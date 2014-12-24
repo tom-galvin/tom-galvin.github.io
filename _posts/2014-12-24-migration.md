@@ -3,7 +3,7 @@ layout: post
 title: "The Migration: Moving to GitHub Pages"
 date: 2014-12-24 13:31:52
 summary: Describing the movement of username.password to the GitHub Pages service.
-categories: username.password web
+categories: blog gen
 ---
 Prior to this point, the entirety of username.password has been written in PHP, and hosted with [x10hosting](http://x10hosting.com)'s free service. While this does the job temporarily, I don't like using PHP for any longer than is absolutely necessary, as PHP seems to have been designed with the express purpose of producing unmaintainable, ugly code - something that I don't want to be dealing with several years down the line. I was also having some issues with the email service as x10hosting has blacklisted the *.pw* ccTLD (due to the relatively high volume of spam originating from such sites), meaning I couldn't send any email from my site. x10hosting is good, but not ideal.
 

@@ -3,7 +3,7 @@ layout: post
 title: Mandelbrot Set Renderer in C
 date: 2014-11-01 14:49:04
 summary: A Mandelbrot set renderer in 228 bytes of C code.
-categories: programming c
+categories: blog dev
 ---
 Playing around with minified C I wrote a renderer for the Mandelbrot set in 228 bytes, using some abuse of boolean logic.
 
