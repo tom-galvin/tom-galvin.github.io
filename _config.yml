@@ -1,0 +1,32 @@
+# Site settings
+title:       username.password
+email:       tom@usn.pw
+author:      Thomas Galvin
+description: "My thoughts on the world of programming, computer science and technology"
+baseurl:     ""
+url:         "http://usn.pw"
+
+# Google analytics
+google_analytics:
+
+# Optional features
+animated:           false
+show_related_posts: false
+show_post_footers:  false
+
+# Social icons
+show_social_icons: false
+github_username:
+twitter_username:
+google_plus_id:
+linkedin_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Build settings
+markdown:     kramdown
+permalink:    pretty
+paginate:     3
+sass:
+  compressed: true
