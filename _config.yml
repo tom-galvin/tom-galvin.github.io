@@ -7,7 +7,7 @@ baseurl:     ""
 url:         "http://usn.pw"
 
 # Google analytics
-google_analytics:
+google_analytics: UA-57985829-1
 
 # Optional features
 animated:           false
@@ -15,8 +15,8 @@ show_related_posts: false
 show_post_footers:  false
 
 # Social icons
-show_social_icons: false
-github_username:
+show_social_icons: true
+github_username: Quackmatic
 twitter_username:
 google_plus_id:
 linkedin_username:
