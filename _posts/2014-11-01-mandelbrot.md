@@ -2,7 +2,7 @@
 layout: post
 title: Mandelbrot Set Renderer in C
 date: 2014-11-01 14:49:04
-summary: A Mandelbrot set renderer in 228 bytes of C code.
+summary: An obfuscated ASCII Mandelbrot set renderer in 228 bytes of C code.
 categories: blog dev
 ---
 Playing around with minified C I wrote a renderer for the Mandelbrot set in 228 bytes, using some abuse of boolean logic.
@@ -54,5 +54,12 @@ And here's the expanded version so you can see how it works:
             }
         }
     }
+
+Of course, there would be little point showing you if I didn't show you the output, too. Here it is, looking slightly out of proportion due to the non-square characters in my terminal emulator:
+
+<div style="text-align: center">
+  <img alt="The Mandelbrot set rendered as ASCII art in a terminal emulator." src="{{ site.base_url }}/images/mandelbrot.png" /><br/>
+  <span class="post-meta small">The different 'levels' of iterations required for the sequence to diverge are shown using different characters.</span>
+</div>
 
 Not only was this a fun little challenge to write, but it also taught me what the Mandelbrot set actually is - prior to this point, my knowledge of the fractal was limited to what it looked like.

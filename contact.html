@@ -6,11 +6,11 @@ permalink: /contact/
 
 <div class="py2">
   <form action="//formspree.io/{{ site.email }}" method="POST" class="form-stacked form-light">
-    <input type="text" name="email" class="input mobile-block" placeholder="email address">
+    <input type="text" name="email" class="input mobile-block" placeholder="email address (optional)">
 		<input type="hidden" name="_next" value="{{ site.url }}">
 		<input type="hidden" name="_subject" value="Contact Submission">
 		<input type="text" name="_gotcha" style="display: none">
-    <textarea type="text" name="content" class="input mobile-block" rows="5" placeholder="What would you like to contact me about?"></textarea>
+    <textarea type="text" name="content" class="input mobile-block" rows="5" placeholder="what would you like to contact me about?"></textarea>
     <input type="submit" class="button button-blue button-big mobile-block" value="send">
   </form>
 </div>
