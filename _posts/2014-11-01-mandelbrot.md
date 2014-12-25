@@ -55,7 +55,7 @@ And here's the expanded version so you can see how it works:
         }
     }
 
-Of course, there would be little point showing you if I didn't show you the output, too. Here it is, looking slightly out of proportion due to the non-square characters in my terminal emulator:
+Of course, there would be little point telling you if I didn't show you the output, too. Here it is, looking slightly out of proportion due to the non-square characters in my terminal emulator:
 
 <div style="text-align: center">
   <img alt="The Mandelbrot set rendered as ASCII art in a terminal emulator." src="{{ site.base_url }}/images/mandelbrot.png" /><br/>
