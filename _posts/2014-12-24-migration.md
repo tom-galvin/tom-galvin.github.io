@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Migration: Moving to GitHub Pages"
+title: "The Migration: moving to GitHub Pages"
 date: 2014-12-24 13:31:52
 summary: Describing the movement of username.password to the GitHub Pages service.
 categories: blog gen

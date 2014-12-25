@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Mandelbrot Set Renderer in C
+title: Mandelbrot Set renderer in C
 date: 2014-11-01 14:49:04
 summary: An obfuscated ASCII Mandelbrot set renderer in 228 bytes of C code.
 categories: blog dev
