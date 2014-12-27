@@ -5,7 +5,7 @@ date: 2014-12-27 20:30:15
 summary: "An interesting parallel between boolean algebra, type theory, and indeed almost anything with a + and × operator."
 categories: blog cs
 ---
-In an attempt to better understand and use functional programming languages like Haskell, I've been delving deeper into the Computer Science theory behind it all. This generally involves staring intently at Wikipedia pages on the topics rather than receiving any form of formal education on them, but that's generally enough to glean some worthwhile information.
+In an attempt to better understand and use functional programming languages like Haskell, I've been delving deeper into the Computer Science theory behind it all. This typically involves staring intently at Wikipedia pages on the topics rather than receiving any form of formal education on them, but that's generally enough to glean some worthwhile information.
 
 Boolean algebra is a mathematical model for binary logic, using only the values `True` and `False` (or one and zero) for variables. To represent logical *or*, the addition symbol can be used, and likewise the multiplication symbol for *and*<sup>[1]</sup>. The choice of these symbols becomes immediately evident when you use one and zero; the multiplication table corresponds directly to the *and* truth table. Zero multiplied by anything is always zero, meaning the value of **A**×**B** can only be non-zero when **A** and **B** are non-zero. Similarly for addition, for **A**+**B** to be non-zero, either **A** or **B** must be non-zero. Of course, one plus one is two, but two doesn't exist in the mind of George Boole, so the result is limited to the values {0, 1}.
 
