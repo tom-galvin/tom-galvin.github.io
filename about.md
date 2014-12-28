@@ -10,4 +10,4 @@ This Jekyll theme, Pixyll, was made by [John Otander](http://johnotander.com) ([
 
 ## errata
 
-I've made a habit of talking about things before I fully understand them. This means I might use incorrect terminology or write something that doesn't make complete sense. If anything on this blog is factually incorrect, please don't hesitate to [contact me]({{ site.baseurl }}/contact/) so I can fix it.
+If anything on this blog is factually incorrect, uses the wrong terminology or just doesn't seem to make sense, please don't hesitate to [contact me]({{ site.baseurl }}/contact/) so I can fix it.
