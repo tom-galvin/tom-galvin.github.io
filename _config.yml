@@ -13,10 +13,12 @@ google_analytics: UA-57985829-1
 animated:           false
 show_related_posts: false
 show_post_footers:  false
+disqus_shortname: usnpw
 
 # Social icons
 show_social_icons: true
 github_username: Quackmatic
+stackoverflow_profile_id: 4325617
 twitter_username:
 google_plus_id:
 linkedin_username:
