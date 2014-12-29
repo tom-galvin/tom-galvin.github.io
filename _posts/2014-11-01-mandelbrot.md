@@ -7,53 +7,57 @@ categories: blog dev
 ---
 Playing around with minified C I wrote a renderer for the Mandelbrot set in 228 bytes, using some abuse of boolean logic.
 
-    #include<stdio.h>
-    #define F float
-    void main(){int i
-    =4095,j;while(i--
-    >=0){F p=0,q=0,a=
-    -(F)(i%64-14)/30,
-    b=(F)(i/64-32)/30
-    ;j=99;while(j-->0
-    &&p*p+q*q<9){F s=
-    p*p-q*q,t=2*p*q;p
-    =a+s,q=b+t;}j=~i&
-    63?')'-j/10:'\n';
-    putchar(j);}}
+{% highlight c %}
+#include<stdio.h>
+#define F float
+void main(){int i
+=4095,j;while(i--
+>=0){F p=0,q=0,a=
+-(F)(i%64-14)/30,
+b=(F)(i/64-32)/30
+;j=99;while(j-->0
+&&p*p+q*q<9){F s=
+p*p-q*q,t=2*p*q;p
+=a+s,q=b+t;}j=~i&
+63?')'-j/10:'\n';
+putchar(j);}}
+{% endhighlight %}
 
 And here's the expanded version so you can see how it works:
 
-    #include <stdio.h>
+{% highlight c %}
+#include <stdio.h>
 
-    void main()
+void main()
+{
+    int i = 4095, j;
+    while(i-- >= 0)
     {
-        int i = 4095, j;
-        while(i-- >= 0)
+        if(i % 64 > 0) /* give us newlines every 64 chars */
         {
-            if(i % 64 > 0) /* give us newlines every 64 chars */
-            {
-                float p = 0, /* re(z) */
-                      q = 0, /* im(z) */
-                      a = -(float)(i % 64 - 14) / 30, /* re(c) */
-                      b = (float)(i / 64 - 32) / 30;  /* im(c) */
+            float p = 0, /* re(z) */
+                  q = 0, /* im(z) */
+                  a = -(float)(i % 64 - 14) / 30, /* re(c) */
+                  b = (float)(i / 64 - 32) / 30;  /* im(c) */
 
-                j = 99; /* 99 iterations computed */
-                while(j-- > 0 && /* iterate */
-                      p * p + q * q < 9) /* check for divergence */
-                {
-                    float s = p * p - q * q, t = 2 * p * q; /* z^2 */
-                    p = a + s; /* z = z^2 + c */
-                    q = b + t; /* ........... */
-                }
-                putchar(')' - j / 10); /* print different character
-                                          depending on iteration count */
-            }
-            else
+            j = 99; /* 99 iterations computed */
+            while(j-- > 0 && /* iterate */
+                  p * p + q * q < 9) /* check for divergence */
             {
-                putchar('\n');
+                float s = p * p - q * q, t = 2 * p * q; /* z^2 */
+                p = a + s; /* z = z^2 + c */
+                q = b + t; /* ........... */
             }
+            putchar(')' - j / 10); /* print different character
+                                      depending on iteration count */
+        }
+        else
+        {
+            putchar('\n');
         }
     }
+}
+{% endhighlight %}
 
 Of course, there would be little point telling you if I didn't show you the output, too. Here it is, looking slightly out of proportion due to the non-square characters in my terminal emulator:
 

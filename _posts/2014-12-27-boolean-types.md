@@ -13,16 +13,18 @@ Type theory, like Boolean algebra, describes a real-world situation in a mathema
 
 The tagged union is perhaps the unsung hero of functional data types. It is one of data structures in general; describing something as being either one type or another is a fairly principal idea in most programming languages. A prime example of a tagged union is the `'t option` type in F♯, where something can be either `Some(...)` or `None` - equivalently, the `Maybe a` in Haskell is either `Nothing` or `Just a`. Tagged unions are also used in a round-about way to describe the class system in OOP languages. Tagged unions are doable in languages as simple as C:
 
-    struct tagged_union {
-        enum {
-            IS_A_FLOAT,
-            IS_AN_INT
-        } type;
-        union {
-            float f;
-            int i;
-        } data;
-    };
+{% highlight c %}
+struct tagged_union {
+    enum {
+        IS_A_FLOAT,
+        IS_AN_INT
+    } type;
+    union {
+        float f;
+        int i;
+    } data;
+};
+{% endhighlight %}
 
 Tagged unions can also be represented in type theory, using the `+` operator (you can probably see where this is going now). A type which can be either `Int` or `Float` can be written as `Int+Float`. Reading this like a boolean algebra expression suggests the exact same thing - `Int+Float` is `Int` or `Float`. It's interesting to see the relationships between conventional algebra and the different areas of mathematics. I feel that getting some form of grounding in the underlying theory behind types and other things like categories is a helpful (and often necessary) exercise in learning what's really going on in a functional language, which is after all an attempt to model a computer program using maths.
 
