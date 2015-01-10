@@ -18,13 +18,13 @@ Ignoring the subtleties of the inflationary epoch during the Big Bang, it's fair
 This explanation also works if *D(t)* is some polynomial function of *t*. Now, The derivative of *D(t)* with respect to time is:
 
 <div style="text-align: center">
-  <img src="https://latex.codecogs.com/gif.latex?D%27%28t%29%3Dk" alt="D'(t)=k"/>
+  <img src="https://latex.codecogs.com/gif.latex?%5Cdpi%7B120%7D%20D%27%28t%29%3Dk" alt="D'(t)=k"/>
 </div>
 
 Derivative of displacement with respect to time, so this tells us that the reference galaxy has a constant velocity. The Hubble constant is the ratio of velocity to distance, like so:
 
 <div style="text-align: center">
-  <img src="https://latex.codecogs.com/gif.latex?%5Cfrac%7BD%27%28t%29%7D%7BD%28t%29%7D%3DH_%7B0%7D%3D%5Cfrac%7Bk%7D%7Bkt%7D%3Dt%5E%7B-1%7D" alt="D'(t)/D(t)=H_0=k/kt=t^-1"/>
+  <img src="https://latex.codecogs.com/gif.latex?%5Cdpi%7B120%7D%20%5Cfrac%7BD%27%28t%29%7D%7BD%28t%29%7D%3DH_%7B0%7D%3D%5Cfrac%7Bk%7D%7Bkt%7D%3Dt%5E%7B-1%7D" alt="D'(t)/D(t)=H_0=k/kt=t^-1"/>
 </div>
 
 This tells us that the Hubble constant is just the reciprocal of time since the start of the universe, so of course it cannot be constant! The subscript zero in the notation for the constant implies that this is the value *at the current time*. Indeed, the reciprocal of the Hubble constant is what allows us to calculate the age of the Universe (or approximate it), so it would be nonsensical if it were constant, as that would imply the Universe has existed for an infinite amount of time.
