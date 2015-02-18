@@ -48,7 +48,7 @@ I've instead had to implement a method known as [fourth-order Runge-Kutta integr
 The end result of this is a wave simulator that works surprisingly well. The display is a simplified top-down view of the grid displayed above.
 
 <div style="text-align: center">
-  <img alt="A two-source interference pattern simulated on the wave simulator that I have written." src="{{ site.base_url }}/images/interference.png" /><br/>
+  <img alt="A two-source interference pattern simulated on the wave simulator that I have written." src="{{ site.base_url }}/images/fringes.png" /><br/>
   <span class="post-meta small">The behaviour of the waves quite accurately models the behaviour of waves in real life - here, the two-source interference pattern can be observed, with interference fringes.</span>
 </div>
 
