@@ -2,7 +2,7 @@
 layout: post
 title: 2D wave box in JavaScript
 date: 2015-02-18 11:13:40
-summary: I've written a 2D transverse wave simulator in JavaScript as an exercise in learning it's weird type system.
+summary: I've written a 2D transverse wave simulator in JavaScript, as an exercise in learning its weird type system.
 categories: blog dev
 ---
 The type system in JavaScript is undoubtedly quite different from a run-of-the-mill OOP language. Of course, this is probably because JavaScript is indeed *not* object-oriented, as I talked about in my [previous post on JavaScript]({% post_url 2014-12-29-javascript %}) - rather, it has a prototype-based object system, in which you can imitate classes with some weird, womewhat non-idiomatic code. I've never quite understood it so I decided to write something to force myself to use it.
