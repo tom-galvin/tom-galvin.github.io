@@ -8,8 +8,8 @@ categories: blog dev
 The Web has seen a peculiar inversion over the past few years. JavaScript started out purely as a client-side layer over the HTML page; something that web developers added to statically served sites to make them seem a bit less flat - that is, when they weren't using the `<marquee>` and `<blink>` tags in a convoluted honeycomb of `<frameset>`s. This is the same time when a lot of sites were written as huge monolithic slabs of ASP code, meaning the front-end developer and back-end developer was often the same person.
 
 <div style="text-align: center">
-  <img alt="ASP... kill it with fire!" src="{{ site.baseurl }}/images/asp.png"/><br/>
-  <span class="post-meta small">An ASP (Active Server Pages) server error, ubiquitous for causing software developers hours of pain.</span>
+  <img alt="An ASP (Active Server Pages) server error, ubiquitous for causing software developers hours of pain." src="{{ site.baseurl }}/images/asp.png"/><br/>
+  <span class="post-meta small">ASP... kill it with fire!</span>
 </div>
 
 This is also the same time when people weren't ashamed to have their entire website consist of a Shockwave Flash object, Java applet or (ack) an embedded ActiveX control. These were certainly not *good* times - the situation has improved significantly since those days, don't get me wrong. But for it's time and it's purpose, which was to accompany Java as a less enterprise-y language for the so-called "scripters"[^1], JavaScript did its job.
