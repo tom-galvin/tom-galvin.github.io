@@ -63,7 +63,7 @@ WF does support limited data binding on most controls, and for those that don't,
   <span class="post-meta small">If you're working with a database than data binding support comes pre-loaded with WinForms.</span>
 </div>
 
-At the time, the only reason I went with Windows Forms was because my coursework is not being marked on its maintainability - the project only needs to be completed and documented. The effort required to get used to WPF would have taken too long in the context of this project. Also, WPF seems to have a habit of making difficult things easy[^1][^2], and simple things extremely unintuitive[^3], and working around those quirks would have meant I would have spent most of the available time learning about the ins and outs WPF, rather than developing the project itself.
+At the time, the only reason I went with Windows Forms was because my coursework is not being marked on its maintainability - the project only needs to be completed and documented. The effort required to get used to WPF would have taken too long in the context of this project. Also, WPF seems to have a habit of making difficult things easy, and simple things extremely unintuitive[^3], and working around those quirks would have meant I would have spent most of the available time learning about the ins and outs WPF, rather than developing the project itself.
 
 ## System.Drawing and GDI+
 
@@ -143,7 +143,5 @@ After the coursework piece has been handed in and formally marked, which will be
 
 Overall, creating Graphmatic has been a solid learning experience, and the things I have learned *not* to do with this project are lessons that I think can be applied to any engineering or development project.
 
-[^1]: [http://www.scottlogic.com/blog/2012/04/20/everything-you-wanted-to-know-about-databinding-in-wpf-silverlight-and-wp7-part-two.html](http://www.scottlogic.com/blog/2012/04/20/everything-you-wanted-to-know-about-databinding-in-wpf-silverlight-and-wp7-part-two.html)
-[^2]: [http://www.wpf-tutorial.com/listview-control/listview-data-binding-item-template/](http://www.wpf-tutorial.com/listview-control/listview-data-binding-item-template/)
 [^3]: [http://loyc-etc.blogspot.co.uk/2011/07/why-wpf-sucks.html](http://loyc-etc.blogspot.co.uk/2011/07/why-wpf-sucks.html)
 [^4]: As shown by the fact that even the dated Office macro system supports a bastardized edition of VB6 forms. [Look familiar?]({{ site.base_url }}/images/coursework/winforms4.png)
