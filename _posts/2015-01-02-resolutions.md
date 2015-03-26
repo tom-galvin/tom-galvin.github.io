@@ -9,7 +9,7 @@ I've been putting a few things off recently so I can make them resolutions for t
 
 ## rust
 
-I use C far too much. C is undoubtably a brilliantly useful language - it's available on essentially every platform to some extent, it's predictable, stable and simple, which are 4 good traits. However, it certainly isn't ideal. One bad thing about C is that things generally take a long time to write in it. I've been working on a programming language recently which I mentioned in [my parsing post]({% post_url 2014-12-25-parsing %}) a week ago. I realised after writing the parser that at least 70% of the time I had spent was just writing boilerplate code, such as memory management and cookie-cutter RAII functions. While C is useful to know for a variety of reasons, I feel that using C for everything is a bad habit to slip into; it has its place, which generally isn't for medium-scale hobby projects. There are a few alternatives:
+I've been working on a programming language recently which I mentioned in [my parsing post]({% post_url 2014-12-25-parsing %}) a week ago - the compiler is written in C. C is undoubtably a brilliantly useful language: it's available on essentially every platform to some extent, it's predictable[^1], stable and simple, which are 4 good traits. However, it certainly isn't ideal. One bad thing about C is that things generally take a long time to write in it. I realised after writing the parser that at least 70% of the time I had spent was just writing boilerplate code, such as memory management and cookie-cutter RAII functions. While C is useful to know for a variety of reasons, I feel that using C for everything is a bad habit to slip into; it has its place, which generally isn't for medium-scale hobby projects. There are a few alternatives:
 
 * Scripting languages let you develop the project relatively quickly, but they are perhaps not too suitable for projects such as parsers, although I am still seriously considering it.
 
@@ -51,3 +51,5 @@ Hopefully I can learn a subset of full OLL for the 3x3, get better at Yau on the
 ### finally...
 
 Of course, these aren't my only resolutions, but the rest of them are probably of little interest for this type of blog! Have a good year.
+
+[^1]: Unless you introduce undefined behaviour, in which case the language becomes anything *but* predictable.
