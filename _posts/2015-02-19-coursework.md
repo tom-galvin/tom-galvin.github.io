@@ -5,7 +5,7 @@ date: 2015-02-19 22:13:36
 summary: Some morsels of wisdom picked up about using WinForms and GDI+ in my A-level Computing coursework.
 categories: blog dev
 ---
-The feeling you get upon finishing a project is, without a doubt, one of the better parts of programming. I must admit that my started-to-completed ratio is shocking: I have many half-baked projects in several different languages and frameworks cluttering my hard-drive. A lot of these are due to time constraints, getting bored of the idea, or simply having the project run away from me - realising soon after starting that it's going to take a lot more effort to finish this than I had hoped.
+I'll start by admitting that my started-to-completed ratio of projects is shocking: I have many half-baked ideas in several different languages and frameworks cluttering my hard-drive. A lot of these are due to time constraints, getting bored of the idea, or simply having the project run away from me - realising soon after starting that it's going to take a lot more effort to finish this than I had hoped.
 
 I think the most important thing that you need in order to successfully finish a project - or at least bring it to a completed state - are constraints. Adding new features is great; maintaining them is a different ball game. Going back and documenting the features that you *just had* to add two months ago takes time and effort. And, being a person who insists on writing extremely verbose documentation or none at all, I end up either being tied down for days thoroughly documenting everything, or having a lot of undocumented code.
 
