@@ -2,7 +2,7 @@
 layout: post
 title: Lessons learned from a successful project
 date: 2015-02-19 22:13:36
-summary: Some morsels of wisdom picked up about using WinForms and GDI+ in my A-level Computing coursework.
+summary: Some idle commentary about the usage of WinForms and GDI+ in my A-level Computing coursework.
 categories: blog dev
 ---
 I'll start by admitting that my started-to-completed ratio of projects is shocking: I have many half-baked ideas in several different languages and frameworks cluttering my hard-drive. A lot of these are due to time constraints, getting bored of the idea, or simply having the project run away from me - realising soon after starting that it's going to take a lot more effort to finish this than I had hoped.
@@ -15,7 +15,7 @@ Upon being given the chance to write my own software for a piece of coursework, 
 
 ## System.Windows.Forms
 
-WinForms is a fairly thin API around the Windows API, much like its loose predecessor, MFC. This lends it absolutely no cross-platform compatibility whatsoever: Mono has only partial support for Windows Forms. However, one thing WinForms really excels at is rapid application development. If you need to get an interface for a small program done, and you need it done quickly, the drag-and-drop interface is excellent for the task.
+WinForms is a fairly thin API around the Windows API. This lends it absolutely no cross-platform compatibility whatsoever: Mono has only partial support for Windows Forms. However, one thing WinForms really excels at is rapid application development. If you need to get an interface for a small program done, and you need it done quickly, the drag-and-drop interface is excellent for the task.
 
 <div style="text-align: center">
   <img alt="The drag-and-drop interface used to visually edit Windows Forms programs in Microsoft Visual Studio." src="{{ site.base_url }}/images/coursework/winforms1.png" /><br/>
@@ -43,7 +43,7 @@ this.panToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
 this.panToolStripMenuItem.Text = "Pa&n";
 {% endhighlight %}
 
-Creating re-usable parts of code for a Forms application is possible but requires more effort than it should to do in order for it to be done correctly; even then, the end result is not pretty. This sort of design encourages a top-down approach to building projects, which has a habit of leading to badly-structured, poorly thought out programs. Design documents might seem like a lot of effort, but in this situation they've helped me quite a bit.
+Creating re-usable parts of code for a Forms application is possible but requires more effort than it should to do in order for it to be done correctly; even then, the end result is not pretty. This sort of design encourages a top-down approach to building projects which, at least for me, has a habit of leading to badly-structured and poorly thought out programs. Design documents might seem like a lot of effort, but in this situation they've helped me quite a bit.
 
 The event-driven design of WinForms means that the event handlers for controls on the form are, by default, all piled into the same class that displays the controls themselves (and, in a lot of cases, the state of the program).
 
@@ -67,7 +67,7 @@ At the time, the only reason I went with Windows Forms was because my coursework
 
 ## System.Drawing and GDI+
 
-Graphical drawing capabilities are a fairly intrinsic part of my project, with it being a graphical calculator. Luckily, the .NET framework sports a graphics system in the `System.Drawing` namespace which is fairly similar to the `java.awt.Graphics` class from which it was probably inspired. The system is a managed layer over the GDI+ API, which again limits portability to Windows, as the graphics device interface is another Windows-specific system.
+Graphical drawing capabilities are a fairly intrinsic part of my project, what with it being a graphical calculator. Luckily, the .NET framework sports a graphics system in the `System.Drawing` namespace which is fairly similar to the `java.awt.Graphics` class from which it was probably inspired. The system is a managed layer over the GDI+ API, which again limits portability to Windows, as the graphics device interface is another Windows-specific system.
 
 The API that the .NET Framework provides isn't all that bad. It supports enough features to get most jobs done - enough to render the visual part of my graphing calculator.
 
@@ -76,9 +76,9 @@ The API that the .NET Framework provides isn't all that bad. It supports enough 
   <span class="post-meta small">2D drawing support exposed by GDI+ is quite feature-complete.</span>
 </div>
 
-Of course, with GDI+ being an unmanaged API, you need to be careful to free all resources that you use. This involves calling `Dispose()` on every GDI+ resource you create, or surrounding everything in `using()` clauses.
+What with GDI+ being an unmanaged API, you need to be careful to free all resources that you use. This involves calling `Dispose()` on every GDI+ resource you create, or surrounding everything in `using()` clauses, making already-unpretty code look very ugly and non-idiomatic.
 
-The downside of using GDI+ is the total lack of hardware acceleration. The graphing calculator noticeably slows down when you zoom in and out with a lot of content on the page - the plotted curves are being redrawn with marching squares each time. In fact, the entire page display gets fully redrawn each time any part of the page display changes. In hindsight, I probably would have opted forOpenGL or Direct2D instead of GDI+ for the page display, to avoid the speed overhead.
+The other downside of using GDI+ is the total lack of hardware acceleration. The graphing calculator noticeably slows down when you zoom in and out with a lot of content on the page - the plotted curves are being redrawn with marching squares each time. In fact, the entire page display gets fully redrawn each time any part of the page display changes. In hindsight, I probably would have opted for OpenGL or Direct2D instead of GDI+ for the page display, to avoid the speed overhead.
 
 <div style="text-align: center">
   <img alt="A screenshot of the Windows Task Manager when redrawing a lot of visuals in the graphing calculator display." src="{{ site.base_url }}/images/coursework/project3.png" /><br/>
