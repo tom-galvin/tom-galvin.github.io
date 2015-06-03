@@ -80,7 +80,7 @@ Now we know how to tell a valid sentence apart from gibberish, we need to find t
   <span class="post-meta small">There's a lot more steps that I skipped over here, and the number of steps grows exponentially with the board size in the worst-case scenario.</span>
 </div>
 
-You can probably deduce the pseudo-code for this yourself: it's just a trial-and-error process. Whenever an invalid sentence, cycle or dead end is found, the search stops and back-tracks to the last valid state. All of this searching leads to a whopper of a stack frame, making it quite nasty to debug.
+You can probably deduce the pseudo-code for this yourself: it's just a trial-and-error process. Whenever an invalid sentence, cycle or dead end is found, the search stops and back-tracks to the last valid state. All of this searching leads to a whopper of a call stack, making it quite nasty to debug.
 
 ## the solution
 
