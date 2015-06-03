@@ -9,7 +9,7 @@ categories: blog maths
 
 I saw [this post](//www.reddit.com/r/math/comments/320qbp/) on [/r/math](//www.reddit.com/r/math) today, which asks if there is an intuitive illustration of the value of the constant *e*=2.7183... There are a few ways of showing this, including the definition of *e* as the upper limit of \\(\int\_{1}^{e}{\\frac{1}{x} dx}=1\\). This is definitely true, but isn't particularly satisfying - you can see *e* on the graph, sure, but where does that value come from? There's also the infinite series \\(e=\\sum\_{n=1}^{\\infty}{\\frac{1}{n!}}\\), but again it's not too intuitive.
 
-I remember watching [this particularly catchy video](//www.youtube.com/watch?v=ZPGHuuk2bKw) on the constant *e* some time ago, and the compound interest graph 18 seconds into the video caught my eye - you can see how the value tends to *e* as the number of intervals increases. Not wanting to rip the visualisation straight from the video I decided to create a visualisation myself. That's probably what you can here to see, so here it is:
+I remember watching [this particularly catchy video](//www.youtube.com/watch?v=ZPGHuuk2bKw) on the constant *e* some time ago, and the compound interest graph 18 seconds into the video caught my eye - you can see how the value tends to *e* as the number of intervals increases. Not wanting to rip the visualisation straight from the video I decided to create a visualisation myself. That's probably what you came here to see, so here it is:
 
 <div style="text-align: center">
   <img alt="An animation showing compound interest over time. As the number of &quot;compoundings&quot; increases, the balance tends to the mathematical constant e." src="{{ site.base_url }}/images/compound-interest.gif" /><br/>
