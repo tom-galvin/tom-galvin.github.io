@@ -26,4 +26,18 @@
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:site_name" content="{{ site.title }}">
+
+    <!-- Force HTTPS so Disqus comments aren't broken -->
+    <script>
+      if (location.host === "usn.pw" && location.protocol !== "https:") {
+        try {
+          location.protocol = "https:";
+        } catch(ex) { /* irritating hack for Firefox */
+          if(typeof console !== "undefined") {
+            console.info("Redirecting to use HTTPS.");
+          }
+          location.protocol = "https";
+        }
+      }
+    </script>
 </head>

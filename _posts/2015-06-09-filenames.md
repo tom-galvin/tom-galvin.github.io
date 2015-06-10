@@ -71,7 +71,7 @@ Kind of. I realised at this point that, if the implementations of ReactOS and Wi
 Eventually I reached the point where I couldn't keep track of where I was. There are so many layers of abstraction in the Windows API that it's a miracle that anyone could maintain it - which probably explains the increasing level of bloat in new versions of Windows. The `Rtl*`, `Iop*` and `Nt*` functions are barely documented on MSDN (but mentioned nevertheless) so I had to do a lot of searching around the web for any references to short file names or 8.3 paths.
 
 <div style="text-align: center">
-  <img alt="An XKCD comic about obscure programming problems," src="//imgs.xkcd.com/comics/wisdom_of_the_ancients.png" /><br/>
+  <a href="http://xkcd.com/979/"><img alt="An XKCD comic about obscure programming problems," src="//imgs.xkcd.com/comics/wisdom_of_the_ancients.png" /></a><br/>
   <span class="post-meta small">When knee-deep in the backwaters of a gigantic foreign codebase, this situation is irritatingly common.</span>
 </div>
 
