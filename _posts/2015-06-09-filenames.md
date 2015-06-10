@@ -62,7 +62,7 @@ I stepped through the executable, watching crap from the MSVC runtime shuffle ar
 
 I soon realised that I'd make no progress here unless I knew what I was looking for. I'd need some form of reference to guide myself along the disassembly. Unfortunately the Windows API is closed tighter than an aeroplane door; it may as well be a black box inside. I have no access to the insider's documentation and I certainly wouldn't be able to get access to the NT source code.
 
-Luckily, I'm not totally in the dark. [ReactOS](https://www.reactos.org/) is an operating system that aims to provude one-to-one binary compatibility with Windows NT, including the API. The ReactOS developers likely have some experts in tracing assembly in order to mimic the Windows API to the dot, so I could only hope that some of their API functions were similarly implemented. ReactOS is open source and the implementation for this particular function is available [here](https://github.com/mirror/reactos/blob/95ba2fad27e43dbe5945dfc40bfeb3473345e54c/reactos/dll/win32/kernel32/client/path.c#L1828).
+Luckily, I'm not totally in the dark. [ReactOS](https://www.reactos.org/) is an operating system that aims to provide one-to-one binary compatibility with Windows NT, including the API. The ReactOS developers likely have some experts in tracing assembly in order to mimic the Windows API to the dot, so I could only hope that some of their API functions were similarly implemented. ReactOS is open source and the implementation for this particular function is available [here](https://github.com/mirror/reactos/blob/95ba2fad27e43dbe5945dfc40bfeb3473345e54c/reactos/dll/win32/kernel32/client/path.c#L1828).
 
 I'd soon realise if the implementations in Windows and ReactOS were similar by the pattern of function calls, particularly to `SetErrorMode` and `GetFileAttributesW` at the start of the function body. As it happens, the implementation appears to be almost identical; in both cases, the majority of the function is just memory management and buffer allocation, and the interesting part occurs right at the start in `GetFileAttributesW`. However, this is also the *only* interesting part of the function. This must be where the short path creation occurs, right?
 
@@ -85,9 +85,9 @@ ReactOS implements this API function [here](https://github.com/mirror/reactos/bl
     c:\SPN>Checksum "a.txt3"
     689f
 
-...and the checksums don't match; not even close. I verified this with a few files, and the Checksum that ReactOS uses is way off from what Windows uses. It seems like that, at this level, ReactOS differs in implementation from Windows. Technically, this isn't a problem for ReactOS; FAT specifies no rule on what checksum to use for 8.3 filenames, and indeed there doesn't actually need to be a checksum at all, as long as the filename is unique and fits in the length restriction. To get to the bottom of this, we'll need to dive head-first into the NT kernel.
+...and the checksums don't match; not even close. I verified this with a few files, and the Checksum that ReactOS uses is way off from what Windows uses. It seems like, at this level, ReactOS differs in implementation from Windows. Technically, this isn't a problem for ReactOS; FAT specifies no rule on what checksum to use for 8.3 filenames, and indeed there doesn't actually need to be a checksum at all, as long as the filename is unique and fits in the length restriction. To get to the bottom of this, we'll need to dive head-first into the NT kernel.
 
-The `RtlpGetChecksum` function isn't mentioned on MSDN at all and neither is the `Rtlp` prefix at all, suggesting the implementations of ReactOS and Windows diverge at this low level. I deduced that the checksum function probably wasn't exported from `ntoskrnl` at all. ReactOS was no use to me at this point. I needed to disassemble `ntoskrnl.exe` myself, and hope the checksum implementation isn't too cryptic. First, we know two things that we can use to look out for in the disassembly:
+The `RtlpGetChecksum` function isn't mentioned on MSDN at all and neither is the `Rtlp` prefix at all, suggesting the implementations of ReactOS and Windows do indeed diverge at this low level. I deduced that the checksum function probably wasn't exported from `ntoskrnl` at all. ReactOS was no use to me at this point. I needed to disassemble `ntoskrnl.exe` myself, and hope the checksum implementation isn't too cryptic. First, we know two things that we can use to look out for in the disassembly:
 
 * The checksum is used once we reach `~5` in the filename; ie. there are four collisions with existing 8.3 file names. We'll need to look for a loop that runs four times and then gives up. It's also used if the initial filename length is only one or two characters. We're probably looking for a call or jump that's ran twice.
 * The checksum is 4 hexadecimal characters long. The obvious way to calculate the checksum is as a 16-bit integer, and then converting to hexadecimal - at this level, probably with a handmade conversion rather than anything like `sprintf`. Each hexadecimal digit represents 4 bits, or a *nybble* (half of a byte), so we'll need to hope the function does this conversion by shifting four bytes off the checksum at a time and converting to a character. We'll need to look for right-shifts by 4 bits, and the ASCII characters for zero (`0x30`) and for capital A (`0x41`).
@@ -127,7 +127,7 @@ Here's a close-up of the first loop.
   <img alt="The first curious loop." src="{{ site.base_url }}/images/filename/ark-hexloop.png" /><br/>
 </div>
 
-First, look at the instructions highlighted **1**. This skips the loop entirely if the content of `edx` (the length of the filename) is greater than two. That matches one of the criteria for the checksum - it's only ran if the filename is greater than 2 characters. Now look at the instructions highlighted **2**. The `and` and `cmp` instructions look awfully like part of a conversion of a nybble to a hex digit; that's followed by a shift right by four places. In the bottom 3 instructions, a counter is moved along 2 places and the loop repeats. Internally Windows stores filenames as wide strings (with wide 16-bit characters), so this probably adds the hex digits to the filename. This is a dead give-away that we've found our checksum function!
+First, look at the instructions highlighted **1**. This appears to skip a section entirely if the content of `edx` (the length of the filename) is less than two. That sounds familiar to one of the criteria for the checksum - it's only ran if the filename is greater than 2 characters. Now look at the instructions highlighted **2**. The `and` and `cmp` instructions look awfully like part of a conversion of a nybble to a hex digit; that's followed by a shift right by four places. In the bottom 3 instructions, a counter is moved along 2 places and the loop repeats. Internally Windows stores filenames as wide strings (with wide 16-bit characters), so this probably adds the hex digits to the filename. This is a dead give-away that we've found our checksum function!
 
 One thing to note is that the nybbles are shifted off the checksum from the *right* (ie. right-to-left) but appended to the filename from the *left* (ie. left-to-right). This means the nybbles are going to be in reverse order from the calculation; bear this in mind in the next section as we will need to correct for this, which is simple enough. I jumped to our hidden subroutine in ArkDasm, and upon first inspection it looks like there are 3 jump addresses.
 
@@ -138,7 +138,7 @@ One thing to note is that the nybbles are shifted off the checksum from the *rig
 
 Let's inspect these 3 magic numbers:
 
-* `0x12b9b0a5`. This equals **314159269** in decimal. Yep, that's the first 8 digits of pi right there - something's up. A quick Google search shows that this magic constant has been used for LGCs (*Linear Congruential Generators*, a type of random number generator).
+* `0x12b9b0a5`. This equals **314159269** in decimal. Yep, that's the first 8 digits of pi right there, but the ninth digit is wrong - something's up. A quick Google search shows that this magic constant has been used for LGCs (*Linear Congruential Generators*, a type of random number generator).
 * `0x44b82f99`. This equals **1152921497** in decimal, and is relatively prime to the previous number, another hint that this checksum incorporates an LCG.
 * `0x3b9aca07`. This equals **1000000007** in decimal, and is a prime number.
 
@@ -178,7 +178,7 @@ We've obviously got a different checksum function to the ReactOS implementation,
 
 The three instructions under `lbl1` first seem to enumerate each character in the (long-format) path to get an initial checksum, by starting from zero and then multiplying by `0x25` and adding each character in turn. This is all mod `0x10000`, as the high bits of the addition and multiplication are discarded, as the checksum is stored in `r8w`, the 16-bit low word of the x64 `r8` register.
 
-Then we reach a nasty chunk of horrible sign-manupulating arithmetic to (presumably) shuffle the bits of the checksum around some more. I don't understand why the Windows developers went to this extent to write such a complex hash function for something that doesn't need to be cryptographically secure in any way, but never mind. I initially didn't bother to convert this into a readable form, and just put it nearly verbatim as inline assembler into a small executeable to make sure it gives the correct hash, remembering to reverse the nybble order before returning the hash value.
+Then we reach a nasty chunk of horrible sign-manupulating arithmetic to (presumably) shuffle the bits of the checksum around some more. I don't understand why the Windows developers went to this extent to write such a complex hash function for something that doesn't need to be cryptographically secure in any way, but never mind. I initially didn't bother to convert this into a readable form, and just put it nearly verbatim as inline assembler into a small executable to make sure it gives the correct hash, remembering to reverse the nybble order before returning the hash value.
 
 {% highlight cpp %}
 USHORT chksum(PWSTR name)
@@ -272,9 +272,11 @@ Now to verify it again, to make sure it hasn't gone wrong in the ASM-to-C++ proc
     c:\SPN>Checksum a.txt7
     b720
 
-Yup - we've got it spot on now. Before this investigation, this was essentially an impossible challenge for me, so I'm very happy that I've managed it. I've also succeeded in documenting an obscure corner of Windows that hasn't often been touched. I've written a version of the checksum calculator in standard ANSI C which can be downloaded here: [**8dot3-checksum.c**]({{ site.base_url }}/assets/8dot3-checksum.c)
+Yup - we've got it spot on now. Before this investigation, this was essentially an impossible challenge for me, so I'm very happy that I've managed it. I've also succeeded in documenting an obscure corner of Windows that hasn't often been touched. I've written a version of the checksum calculator in standard C which can be downloaded here: [**8dot3-checksum.c**]({{ site.base_url }}/assets/8dot3-checksum.c)
 
 As far as I know, this is the first time this has been analysed. I can't find references to the 3 magic constants used together anywhere on the internet. I hope it's of use to someone - I should give a heads-up to the ReactOS developers, to let them know what I've found. This has certainly been an interesting experience learning about analysis and x86 assembly.
+
+**Update**: Fixed a few typographical errors, thanks to Reddit and HN readers.
 
 [^1]: [Poor documentation here...](https://support.microsoft.com/en-us/kb/142982/en-us)
 [^2]: [...and here...](https://msdn.microsoft.com/en-us/library/aa365247.aspx#short_vs._long_names)
