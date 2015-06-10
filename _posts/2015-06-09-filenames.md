@@ -138,7 +138,7 @@ One thing to note is that the nybbles are shifted off the checksum from the *rig
 
 Let's inspect these 3 magic numbers:
 
-* `0x12b9b0a5`. This equals **314159269** in decimal. Yep, that's the first 8 digits of pi right there, but the ninth digit is wrong - something's up. A quick Google search shows that this magic constant has been used for LGCs (*Linear Congruential Generators*, a type of random number generator).
+* `0x12b9b0a5`. This equals **314159269** in decimal. Yep, that's the first 8 digits of pi right there, but the ninth digit is wrong - something's up. A quick Google search shows that this magic constant has been used for LCGs (*Linear Congruential Generators*, a type of random number generator).
 * `0x44b82f99`. This equals **1152921497** in decimal, and is relatively prime to the previous number, another hint that this checksum incorporates an LCG.
 * `0x3b9aca07`. This equals **1000000007** in decimal, and is a prime number.
 
@@ -277,6 +277,36 @@ Yup - we've got it spot on now. Before this investigation, this was essentially 
 As far as I know, this is the first time this has been analysed. I can't find references to the 3 magic constants used together anywhere on the internet. I hope it's of use to someone - I should give a heads-up to the ReactOS developers, to let them know what I've found. This has certainly been an interesting experience learning about analysis and x86 assembly.
 
 **Update**: Fixed a few typographical errors, thanks to Reddit and HN readers.
+
+**Update 2**: I've received [quite](//www.reddit.com/r/ReverseEngineering/comments/398agf/my_first_attempt_at_real_reverse_engineering/cs226jj?context=3) [a few](//www.reddit.com/r/ReverseEngineering/comments/398agf/my_first_attempt_at_real_reverse_engineering/cs1zkgd?context=3) [comments](https://news.ycombinator.com/item?id=9691800) regarding what happens once you run out of possible tilde numbers, so I've decided to put the guesswork to rest. Let's take this scenario: you're going to get the short name of a file `test file.txt", but there's already a bunch of files named `TESTFI~1.TXT` through `TESTFI~9.TXT`. Windows moves onto using hashes at this point, so it tries `TEB00D~1.TXT` instead. But what if this exists, too? Windows won't re-hash the file names as they're already valid 8.3 path names, so this causes another collision. It moves onto `TEB00D~2.TXT` as you may expect. If `TEB00D~1.TXT` through `TEB00D~9.TXT` all exist already, then the filename starts to get truncated further - it moves on to use `TEB00~10.TXT`. The obvious question is, what happens when the namespace runs out entirely? You move through `TEB00~99.TXT` to `TEB~9999.TXT` to `T~999999.TXT` and then to `~9999999.TXT`, and then what? Will we invoke a buffer over-run (under-run?) as the tilde moves off the left edge of the filename? Will Windows crash entirely as it's in kernel code? I'd be surprised if this has ever happened before. Of course, this is a lot of files we're talking about here - 9999999, plus 9 more for the initial collisions - so I set up a Python script to create them all automatically:
+
+{% highlight python %}
+filename = 'TEB00D'
+
+for i in range(7):
+  if i == 0:
+    truncated_filename = filename
+  else:
+    truncated_filename = filename[:-i]
+  for n in range(10 ** i, 10 ** (i + 1)):
+    with open('{}~{}.TXT'.format(truncated_filename, n), 'a+') as f:
+      pass
+{% endhighlight %}
+
+This took a good 3 and a half hours to complete. Luckily, empty files take up no room on NTFS other than possibly a block header, so this doesn't take up a great deal of space, despite the somewhat scary looking file count in the folder I used:
+
+<div style="text-align: center">
+  <img alt="The 3 magic numbers in the checksum function." src="{{ site.base_url }}/images/filename/big-folder.png" /><br/>
+  <span class="post-meta small">It's taken upward of 10 minutes just for Windows to count the number of files.</span>
+</div>
+
+Now, the only thing left to do is to actually create `test file.txt` on the disk. Windows generates the short file name upon the creation of the file, so I just used `rem. >"test file.txt"` to create the empty file to reveal the moment of truth:
+
+<div style="text-align: center">
+  <img alt="The 3 magic numbers in the checksum function." src="{{ site.base_url }}/images/filename/collision.png" /><br/>
+</div>
+
+It looks like the Windows developers really did account for everything - kudos to you!
 
 [^1]: [Poor documentation here...](https://support.microsoft.com/en-us/kb/142982/en-us)
 [^2]: [...and here...](https://msdn.microsoft.com/en-us/library/aa365247.aspx#short_vs._long_names)
