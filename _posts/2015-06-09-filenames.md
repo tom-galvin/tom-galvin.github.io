@@ -176,7 +176,7 @@ We've obviously got a different checksum function to the ReactOS implementation,
       movzx eax, r8w
       ret
 
-The three instructions under `lbl1` first seem to enumerate each character in the (long-format) path to get an initial checksum, by starting from zero and then multiplying by `0x25` and adding each character in turn. This is all mod `0xFFFF`, as the high bits of the addition and multiplication are discarded, as the checksum is stored in `r8w`, the 16-bit low word of the x64 `r8` register.
+The three instructions under `lbl1` first seem to enumerate each character in the (long-format) path to get an initial checksum, by starting from zero and then multiplying by `0x25` and adding each character in turn. This is all mod `0x10000`, as the high bits of the addition and multiplication are discarded, as the checksum is stored in `r8w`, the 16-bit low word of the x64 `r8` register.
 
 Then we reach a nasty chunk of horrible sign-manupulating arithmetic to (presumably) shuffle the bits of the checksum around some more. I don't understand why the Windows developers went to this extent to write such a complex hash function for something that doesn't need to be cryptographically secure in any way, but never mind. I initially didn't bother to convert this into a readable form, and just put it nearly verbatim as inline assembler into a small executeable to make sure it gives the correct hash, remembering to reverse the nybble order before returning the hash value.
 
