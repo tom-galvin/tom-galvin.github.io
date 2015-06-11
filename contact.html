@@ -7,6 +7,7 @@ permalink: /contact/
 <div class="py2">
   <form action="//formspree.io/{{ site.email }}" method="POST" class="form-stacked form-light">
     <input type="text" name="email" class="input mobile-block" placeholder="email address (optional)">
+    <input type="text" name="name" class="input mobile-block" placeholder="your name (optional)">
 		<input type="hidden" name="_next" value="{{ site.url }}/thanks">
 		<input type="hidden" name="_subject" value="Contact Submission">
 		<input type="text" name="_gotcha" style="display: none">
