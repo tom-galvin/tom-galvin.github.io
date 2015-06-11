@@ -1,6 +1,8 @@
 # Site settings
 title:       username.password
 author:      Thomas Galvin
+email:
+contact_email: contact@usn.pw
 description: "My thoughts on the world of programming, computer science and technology"
 baseurl:     ""
 url:         "https://usn.pw"
@@ -31,4 +33,4 @@ markdown:     kramdown
 permalink:    pretty
 paginate:     4
 sass:
-  compressed: true
+compressed: true
