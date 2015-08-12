@@ -47,7 +47,7 @@ After this, we're stuck - *OMETHINGAFOOT* doesn't start with any word in the Eng
 
     THERE IS somethingafoot
 
-We essentially perform this same step over and over, until we reach one of two scenarios:
+We essentially perform this same step over and over, until we reach one of three scenarios:
 
 1. We reach the end of the sentence composed of English words. This is a valid sentence: `THERE IS SOMETHING AFOOT`
 2. We reach a point where we cannot go any further in the sentence, as the remainder of the sentence couldn't possibly be valid English: `THE REISS omethingafoot`
