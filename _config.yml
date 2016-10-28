@@ -1,12 +1,12 @@
 # Site settings
-title:       username.password
+title:       tomgalvin.uk
 author:      Thomas Galvin
 email:
-contact_email: contact@usn.pw
+contact_email: contact@tomgalvin.uk
 description: "My thoughts on the world of programming, computer science and technology"
 baseurl:     ""
-url:         "https://usn.pw"
-enforce_ssl: "usn.pw"
+url:         "https://tomgalvin.uk"
+enforce_ssl: "tomgalvin.uk"
 
 # Google analytics
 google_analytics: UA-57985829-1
