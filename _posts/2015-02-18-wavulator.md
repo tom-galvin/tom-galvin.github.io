@@ -5,7 +5,7 @@ date: 2015-02-18 11:13:40
 summary: I've written a 2D transverse wave simulator in JavaScript, as an exercise in learning its weird type system.
 categories: blog dev
 ---
-The type system in JavaScript is undoubtedly quite different from a run-of-the-mill OOP language. Of course, this is probably because JavaScript is indeed *not* object-oriented, as I talked about in my [previous post on JavaScript]({% post_url 2014-12-29-javascript %}) - rather, it has a prototype-based object system, in which you can imitate classes with some weird, somewhat non-idiomatic code. I've never quite understood the behaviour of the prototype system, so I decided to write something to force myself to use it.
+The type system in JavaScript is undoubtedly quite different from a run-of-the-mill OOP language. Of course, this is probably because JavaScript is indeed *not* object-oriented - rather, it has a prototype-based object system, in which you can imitate classes with some weird, somewhat non-idiomatic code. I've never quite understood the behaviour of the prototype system, so I decided to write something to force myself to use it.
 
 When writing JavaScript code in the past, I've made a nasty habit of avoiding the prototype system entirely - meaning I ended up using lots of standard objects and arrays everywhere to store data, which is certainly not fantastic. This is the reason why I've decided to do this. The project I've made simulates a 2-dimensional transverse wave in a little wave box. The waves are rendered using SVG (lazy, I know), with green and red representing up and down (positive and negative, in and out, or whichever pair of antonyms you'd like).
 
@@ -41,7 +41,7 @@ The simplest way that I have found to model this is by connecting each mass to e
   <img alt="Two masses connected by a spring." src="{{ site.base_url }}/images/wave/5.png" /><br/>
 </div>
 
-Now, having the equations is all well and good, but simulating them is another kettle of fish entirely. Upon starting this project I used the naive method of simply adding the rate of change of velocity (acceleration), multiplied by the time step, to the velocity each second - likewise for the displacement. This is called [Euler's integration method](http://en.wikipedia.org/wiki/Euler_method), and while it works for very simple simulations, the result of using Euler's method diverges from the actual scenario significantly for complex situations.
+Now, having the equations is all well and good, but simulating them is a challenge in itself. Upon starting this project I used the naive method of simply adding the rate of change of velocity (acceleration), multiplied by the time step, to the velocity each second - likewise for the displacement. This is called [Euler's integration method](http://en.wikipedia.org/wiki/Euler_method), and while it works for very simple simulations, the result of using Euler's method diverges from the actual scenario significantly for complex situations.
 
 I've instead had to implement a method known as [fourth-order Runge-Kutta integration](http://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods). This works with a slightly more involved approximation method, that tentatively steps forward in time and corrects for any miniscule changes in acceleration and position beforehand, that Euler's method would otherwise ignore. I don't understand the maths behind the derivation of this method, but it works, and the wave simulator uses a four-pass integration to step forward in time.
 
