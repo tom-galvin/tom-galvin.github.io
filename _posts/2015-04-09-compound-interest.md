@@ -74,4 +74,4 @@ animation.save(
 
 There isn't a great deal to describe - I've detailed the repetition of animation frames in the comments of the code. You'll need matplotlib (of course) to plot the visualisation and you'll also need to have ImageMagick to create the animated GIF. Alternatively, you could use FFmpeg and change the final statement to generate an MP4 instead.
 
-The code is available on [Gist](https://gist.github.com/Quackmatic/0e6073ecce62df2db467), too.
+The code is available on [Gist](https://gist.github.com/tom-galvin/0e6073ecce62df2db467), too.

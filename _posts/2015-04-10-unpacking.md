@@ -30,7 +30,7 @@ The best way to break this down is to solve it in two stages.
 
 ## valid sentences
 
-Our first task is to determine if a string is a valid sentence of words in English. To do that, we're going to need a list of words. I used [this word list](https://gist.githubusercontent.com/Quackmatic/512736d51d84277594f2/raw/words) because the built-in one in Arch is fairly useless, as it contains every letter of the alphabet individually, which aren't valid words. Let's look at a simple sentence. We'll use `lower case` for un-resolved bits of the sentence, and space-delimited `UPPER CASE` for bits of the sentence that we know are valid words.
+Our first task is to determine if a string is a valid sentence of words in English. To do that, we're going to need a list of words. I used [this word list](https://gist.githubusercontent.com/tom-galvin/512736d51d84277594f2/raw/words) because the built-in one in Arch is fairly useless, as it contains every letter of the alphabet individually, which aren't valid words. Let's look at a simple sentence. We'll use `lower case` for un-resolved bits of the sentence, and space-delimited `UPPER CASE` for bits of the sentence that we know are valid words.
 
     thereissomethingafoot
 
@@ -84,7 +84,7 @@ You can probably deduce the pseudo-code for this yourself: it's just a trial-and
 
 ## the solution
 
-I wrote the solution twice. The first time I [solved it in Ruby here](https://gist.github.com/Quackmatic/087b59ea3b946ffb5b98). This works, but it's fairly bog-standard and quite slow. The second time round, I [solved it in Haskell here](https://gist.github.com/Quackmatic/07bb53f1750a05ebf87e), which took quite a lot of staring-at-screen debugging, but I got there eventually. Here's the lightly-annotated code, if you're interested:
+I wrote the solution twice. The first time I [solved it in Ruby here](https://gist.github.com/tom-galvin/087b59ea3b946ffb5b98). This works, but it's fairly bog-standard and quite slow. The second time round, I [solved it in Haskell here](https://gist.github.com/tom-galvin/07bb53f1750a05ebf87e), which took quite a lot of staring-at-screen debugging, but I got there eventually. Here's the lightly-annotated code, if you're interested:
 
 {% highlight haskell %}
 import Control.Monad
