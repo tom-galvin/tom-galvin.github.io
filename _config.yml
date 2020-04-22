@@ -7,6 +7,7 @@ description: "My thoughts on the world of programming, computer science and tech
 baseurl:     ""
 url:         "https://tomgalvin.uk"
 enforce_ssl: "tomgalvin.uk"
+plugins: [jekyll-paginate]
 
 # Google analytics
 google_analytics: UA-57985829-1
