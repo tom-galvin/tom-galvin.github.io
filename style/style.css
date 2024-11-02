@@ -175,6 +175,10 @@ main {
   font-size: 11pt;
 }
 
+.content img {
+  max-width: 90%;
+}
+
 ul, ul {
   margin-left: 2em;
 }

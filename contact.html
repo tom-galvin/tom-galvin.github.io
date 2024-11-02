@@ -43,6 +43,7 @@ navtype: contact
     for (var reps = 0; reps < maxReps; reps++) {
       if (pc > program.length) {
         clearInterval(tickInterval);
+        tickInterval = null;
         break;
       } else {
         let i = program[pc];
@@ -106,7 +107,12 @@ navtype: contact
   }
 
   function resetAndStartExecution() {
-    speed += 1;
+    if (tickInterval !== null) {
+      clearInterval(tickInterval);
+      speed += 1;
+    } else {
+      speed = 1;
+    }
     reset();
     updateDisplay();
     tickInterval = setInterval(tick, 10);
