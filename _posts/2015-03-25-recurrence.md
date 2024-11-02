@@ -2,14 +2,14 @@
 layout: post
 title: Recurrence Relations in F# and Haskell
 date: 2015-03-25 19:43:31
-summary: From zero to Haskell in u(n-1) seconds.
+summary: Building a generic solver for recurrence relations like the Fibonacci sequence.
 categories: blog dev
 ---
 The [/r/DailyProgrammer challenge last Monday](http://www.reddit.com/r/dailyprogrammer/comments/2z68di/) involved finding successive terms of a series, defined by a recurrence relation, given the first term of the series. The nice thing about writing these challenges is seeing the different types of solutions that people come up with. As it is a fairly simple challenge, most people opted to just repeatedly apply a function over and over to generate new terms of the series. Someone also created a [JIT compiler](http://www.reddit.com/r/programming/comments/2zlkor/) for the recurrence relation, which I really did not expect.
 
 As I was aware that the second part of this challenge was going to be extending this problem to solve more complex recurrence relations, I created a [somewhat over-developed solution](https://gist.github.com/tom-galvin/796387d5acef8bf5394c) to solve both parts of the challenge at once. It's written in F#, a nice language that I've recently been playing with, that is quite accessible to me due to its basis on the .NET Framework. Having used C# before, the jump from one language to another wasn't so harsh.
 
-When the time rolled around to submit the [second half of the challenge](http://www.reddit.com/r/dailyprogrammer/comments/2zna5q/), however, I was not on a Windows machine. F# (and Mono in general, as I have found) are a bit painful to work with if you're not on Windows. I had already essentially solved the challenge, so I didn't feel like starting from scratch; therefore I opted to do something I had been putting off for a while - to learn Haskell. It's a functional language similar to F# in style and syntax, and as learning a new language is a [new year's resolution of mine]({% post_url 2015-01-02-resolutions %}), I decided to bite the bullet and re-write the solution in Haskell, learning the language as I go along.
+When the time rolled around to submit the [second half of the challenge](http://www.reddit.com/r/dailyprogrammer/comments/2zna5q/), however, I was not on a Windows machine. F# (and Mono in general, as I have found) are a bit painful to work with if you're not on Windows. I had already essentially solved the challenge, so I didn't feel like starting from scratch; therefore I opted to do something I had been putting off for a while - to learn Haskell. It's a functional language similar to F# in style and syntax, and as learning a new language is a new year's resolution of mine, I decided to bite the bullet and re-write the solution in Haskell, learning the language as I go along.
 
 The original F# solution used a `seq` to lazily generate the sequence as needed, using `Seq.unfold` to create a sequence with a state storing the known terms in the series. Haskell is a lazily-evaluated language, however, meaning the sequence can be represented as a list without causing an infinite recursion. To store the recurrence relation (aka *successor*) itself, I'm using a custom data type which stores a tree of operations to perform:
 

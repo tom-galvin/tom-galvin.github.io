@@ -1,17 +1,119 @@
 ---
 layout: page
-title: contact me
+title: Contact
 permalink: /contact/
+navtype: contact
 ---
 
-<div class="py2">
-	<form action="//formspree.io/{{ site.contact_email }}" method="POST" class="form-stacked form-light">
-    <input type="text" name="email" class="input mobile-block" placeholder="email address (optional)">
-    <input type="text" name="name" class="input mobile-block" placeholder="your name (optional)">
-		<input type="hidden" name="_next" value="{{ site.url }}/thanks">
-		<input type="hidden" name="_subject" value="Contact Submission">
-		<input type="text" name="_gotcha" style="display: none">
-    <textarea type="text" name="content" class="input mobile-block" rows="5" placeholder="what would you like to contact me about?"></textarea>
-    <input type="submit" class="button button-blue button-big mobile-block" value="send">
-  </form>
-</div>
+<p>
+  Click <a href="#" onclick="resetAndStartExecution()">here</a> to get my email address.
+</p>
+
+<pre><code id="program"></code></pre>
+
+<p id="disclaimer"></p>
+
+<script>
+  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-]>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<]>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
+  let memory, pc, pcSkipEnd, head, output;
+  let displayWidth = 37;
+
+  let tickInterval;
+  let speed = 0;
+
+  function reset() {
+    memory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    pc = 0;
+    pcSkipEnd = 0;
+    head = 0;
+    output = "";
+  }
+
+  function skip() {
+    let i = program[pc];
+    pcSkipEnd = pc;
+    do {
+      pcSkipEnd += 1;
+    }
+    while('-+<>'.includes(i) && pcSkipEnd < program.length && program[pcSkipEnd] === i);
+  }
+
+  function tick() {
+    let maxReps = speed * Math.random();
+    for (var reps = 0; reps < maxReps; reps++) {
+      if (pc > program.length) {
+        clearInterval(tickInterval);
+        break;
+      } else {
+        let i = program[pc];
+        if (i === '+') {
+          memory[head] += pcSkipEnd - pc;
+        } else if(i === '-') {
+          memory[head] -= pcSkipEnd - pc;
+        } else if(i === '<') {
+          head -= pcSkipEnd - pc;
+        } else if(i === '>') {
+          head += pcSkipEnd - pc;
+        } else if(i === '[') {
+          if(memory[head] === 0) {
+            var a, depth = 1;
+            do {
+              a = program[++pc];
+              if (a === '[') {
+                depth += 1;
+              } else if(a === ']') {
+                depth -= 1;
+              }
+            } while(a !== ']' || depth > 0);
+          }
+        } else if(i === ']') {
+          if(memory[head] !== 0) {
+            var a, depth = 1;
+            do {
+              a = program[--pc];
+              if (a === ']') {
+                depth += 1;
+              } else if(a === '[') {
+                depth -= 1;
+              }
+            } while(a !== '[' || depth > 0);
+          }
+        } else if(i === '.') {
+          output += String.fromCharCode(memory[head]);
+        } else if(i === ',') {
+          // stop looking!
+        }
+        pc = '[]'.includes(i) ? pc + 1 : pcSkipEnd;
+        skip();
+      }
+      updateDisplay();
+    }
+  }
+
+  function updateDisplay() {
+    let element = document.getElementById("program");
+    var h = "";
+    for(var i = 0; i < program.length; i++) {
+      h += "<span" + (i >= pc && i < pcSkipEnd ? ' class="email-pc"' : "") + ">" + program[i] + "</span>" + ((i + 1) % displayWidth == 0 ? "\n" : "");
+    }
+    h += "\n\nMEM:";
+    for(var i = 0; i < memory.length; i++) {
+      h += " <span" + (i === head ? ' class="email-mem"' : "") + ">" + memory[i].toString(16).padStart(2, '0') + "</span>";
+    }
+
+    element.innerHTML = h
+      + `\nOUT: ${output}`;
+  }
+
+  function resetAndStartExecution() {
+    speed += 1;
+    reset();
+    updateDisplay();
+    tickInterval = setInterval(tick, 10);
+    document.getElementById("disclaimer").innerHTML = "If you're getting bored, it will run faster every time you hit the link.";
+  }
+
+  reset();
+  skip();
+  updateDisplay();
+</script>

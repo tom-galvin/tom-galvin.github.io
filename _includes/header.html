@@ -1,14 +1,22 @@
-<header class="site-header px2 px-responsive">
-  <div class="mt2 wrap">
-    <div class="measure">
-      <a href="{{ site.url }}" class="site-title">{{ site.title }}</a>
-      <nav class="site-nav right">
-        {% include navigation.html %}
-      </nav>
-      <div class="clearfix"></div>
-      {% if site.show_social_icons %}
-        {% include social_links.html %}
-      {% endif %}
+<header>
+  <div class="container">
+    <div class="logo">
+      <h1><a href="{{ site.url }}" class="site-title">{{ site.title }}</a></h1>
+      <!-- <h1>TOM GALVIN</h1> -->
     </div>
+    <nav>
+      <ul class="nav-links">
+        {% if page.navtype %}
+          {% assign navtype = page.navtype %}
+        {% else %}
+          {% assign navtype = layout.navtype %}
+        {% endif %}
+        <li{% if navtype == "home" %} class="current-page"{% endif %}><a href="/">home</a></li>
+        <li{% if navtype == "cv" %} class="current-page"{% endif %}><a href="/cv/">cv</a></li>
+        <li{% if navtype == "about" %} class="current-page"{% endif %}><a href="/about/">about</a></li>
+        <li{% if navtype == "socials" %} class="current-page"{% endif %}><a href="/socials/">socials</a></li>
+        <li{% if navtype == "contact" %} class="current-page"{% endif %}><a href="/contact/">contact</a></li>
+      </ul>
+    </nav>
   </div>
 </header>

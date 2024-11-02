@@ -1,0 +1,39 @@
+pre code span.k, pre code span.p, pre code span.si, pre code span.kt, pre code span.cpf, pre code span.kr {
+  font-weight: 400;
+}
+
+pre code span.c1, pre code span.c2 {
+  font-style: italic;
+}
+
+pre code span.s1, pre code span.s2, pre code span.si {
+  color: #914830;
+}
+
+pre code span.cp, pre code span.cpf {
+  color: #60297d;
+}
+
+pre code span.k, pre code span.kt, pre code span.kr {
+  color: #29497d;
+}
+
+pre code span.mi, pre code span.mh {
+  color: #7d7529;
+}
+
+pre code span.c1, pre code span.c2 {
+  color: #617d29;
+}
+
+pre code span.email-mem {
+  color: #000;
+  font-weight: 400;
+  background-color: #0f0;
+}
+
+pre code span.email-pc {
+  color: #fff;
+  font-weight: 400;
+  background-color: #f00;
+}

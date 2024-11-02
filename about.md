@@ -1,11 +1,12 @@
 ---
 layout: page
-title: about
+title: About
 permalink: /about/
+navtype: about
 ---
 
-I'm a graduate from the United Kingdom with an interest in programming and computer science theory. I do some programming for fun as a hobby; you can see some of my public projects [on my Github](https://github.com/tom-galvin). This Jekyll theme, Pixyll, was made by [John Otander](http://johnotander.com) ([@4lpine](https://twitter.com/4lpine)). The site itself is hosted on GitHub Pages.
+Hey, I'm Tom. I'm based in Birmingham (UK), and I work as a software engineer at [Engine by Starling](https://enginebystarling.com).
 
-## errata
+When I'm not writing code I'm probably making stuff in FL studio.
 
-If anything on this blog is incorrect, uses the wrong terminology or just doesn't seem to make sense, please [contact me]({{ site.baseurl }}/contact/) so I can fix it.
+When I'm not in front of a computer I'm hopefully on a mountain strapped to a snowboard somewhere.

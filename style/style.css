@@ -1,0 +1,269 @@
+@import url("webfonts.css");
+@import url("highlight.css");
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Iosevka Aile Web", sans-serif;
+  letter-spacing: -1pt;
+  line-height: 1.6;
+  padding-top: 60px; /* To offset the fixed header */
+}
+
+a {
+  text-decoration: none;
+  color: #3271a8;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+header nav {
+  font-family: "Iosevka Web", sans-serif;
+  letter-spacing: 0;
+  font-style: italic;
+  font-weight: 200;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo h1 {
+  font-size: 32pt;
+  font-weight: bold;
+  letter-spacing: -2pt;
+}
+
+.logo h1 a {
+  color: inherit;
+}
+
+.logo h1:active {
+  color: inherit;
+}
+
+nav {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::before {
+  content: "\00a0";
+}
+
+.nav-links li.current-page a::before {
+  content: ">";
+}
+
+.nav-links a:hover {
+  color: #ff6347;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content {
+  max-width: 1200px;
+  margin-top: 40px;
+  padding-bottom: 50px;
+}
+
+.content h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.content .post-header {
+  max-width: none !important;
+  margin-left: 2em;
+  font-family: "Iosevka Web";
+  font-weight: 200;
+  letter-spacing: 0;
+  font-size: 17pt;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.content .post-header .post-age {
+  font-style: italic;
+}
+
+.content .post-header h2 {
+  font-family: "Iosevka Web";
+  letter-spacing: -0.8pt;
+  font-size: 36pt;
+  line-height: 37pt;
+  text-indent: -1.45em;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination-item {
+  font-family: "Iosevka Web";
+  font-size: 18pt;
+}
+
+.pagination .left {
+  float: left;
+}
+
+.pagination .right {
+  float: right;
+}
+
+.content .post-header h2::before {
+  content: ">>";
+}
+
+.content .post-header .post-length {
+  font-size: 14pt;
+}
+
+.content {
+  font-size: 14pt;
+  line-height: 1.6;
+}
+
+.content p, .content ul, .content ol {
+  margin-bottom: 1.5em;
+}
+
+.content pre {
+  font-size: 11pt;
+  line-height: 1.2;
+}
+
+.content .small {
+  font-size: 11pt;
+}
+
+ul, ul {
+  margin-left: 2em;
+}
+
+pre {
+  padding: 1em;
+  margin: 1em;
+}
+
+p code, pre code, ul code, ol code {
+  font-family: "Iosevka Web";
+  font-weight: 200;
+  letter-spacing: 0;
+}
+
+pre, p code {
+  background-color: rgb(0, 0, 0, 0.03);
+}
+
+p code {
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px rgb(0, 0, 0, 0.03);
+}
+
+.socials-list {
+  padding-top: 2em;
+
+}
+
+.socials-item {
+  box-sizing: border-box;
+  max-height: 70px;
+  display: block;
+}
+
+.socials-item a {
+  margin: 1em;
+  display: flex;
+}
+
+.socials-icon {
+  display: inline-block;
+}
+
+.socials-icon img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.socials-text {
+  display: flex;
+  width: 250px;
+  align-items: center;
+  padding-left: 1em;
+  font-size: 24pt;
+}
+
+.socials-text span {
+  font-family: "Iosevka Web";
+  letter-spacing: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo h1 {
+    font-size: 20px;
+  }
+
+  .nav-links li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  header {
+    padding: 15px;
+  }
+
+  .content h2 {
+    font-size: 24px;
+  }
+
+  .content p {
+    font-size: 16px;
+  }
+}
