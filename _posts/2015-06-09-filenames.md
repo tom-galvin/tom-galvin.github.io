@@ -146,37 +146,39 @@ Let's inspect these 3 magic numbers:
 
 We've obviously got a different checksum function to the ReactOS implementation, confirming my suspicions. Here's the cleaned up assembly for this checksum function:
 
-      movzx eax, word ptr [rcx]
-      mov rdx, qword ptr [rcx+0x8]
-      xor r8d, r8d
-      shr rax, 0x1
-      lea rcx, [rdx+rax*2]
-      jmp lbl2
+{% highlight nasm %}
+  movzx eax, word ptr [rcx]
+  mov rdx, qword ptr [rcx+0x8]
+  xor r8d, r8d
+  shr rax, 0x1
+  lea rcx, [rdx+rax*2]
+  jmp lbl2
 
-    lbl1:
-      imul r8w, r8w, 0x25
-      add r8w, word ptr [rdx]
-      add rdx, 2
+lbl1:
+  imul r8w, r8w, 0x25
+  add r8w, word ptr [rdx]
+  add rdx, 2
 
-    lbl2:
-      cmp rdx, rcx
-      jb lbl1
-      movzx eax, r8w
-      imul eax, eax, 0x12b9b0a5
-      cdq 
-      mov r8d, eax
-      mov eax, 0x44b82f99
-      xor r8d, edx
-      sub r8d, edx
-      imul r8d
-      sar edx, 0x1c
-      mov ecx, edx
-      shr ecx, 0x1f
-      add edx, ecx
-      imul ecx, edx, 0x3b9aca07
-      sub r8d, ecx
-      movzx eax, r8w
-      ret
+lbl2:
+  cmp rdx, rcx
+  jb lbl1
+  movzx eax, r8w
+  imul eax, eax, 0x12b9b0a5
+  cdq 
+  mov r8d, eax
+  mov eax, 0x44b82f99
+  xor r8d, edx
+  sub r8d, edx
+  imul r8d
+  sar edx, 0x1c
+  mov ecx, edx
+  shr ecx, 0x1f
+  add edx, ecx
+  imul ecx, edx, 0x3b9aca07
+  sub r8d, ecx
+  movzx eax, r8w
+  ret
+{% endhighlight %}
 
 The three instructions under `lbl1` first seem to enumerate each character in the (long-format) path to get an initial checksum, by starting from zero and then multiplying by `0x25` and adding each character in turn. This is all mod `0x10000`, as the high bits of the addition and multiplication are discarded, as the checksum is stored in `r8w`, the 16-bit low word of the x64 `r8` register.
 
@@ -230,12 +232,14 @@ Now to verify it:
 
 It works - we've got it! Now all we need to do is convert the mess of assembly into readable code. A way of simplifying this assembly expression is by looking at these 6 instructions.
 
-    imul eax, eax, 0x12b9b0a5
-    cdq 
-    mov r8d, eax
-    mov eax, 0x44b82f99
-    xor r8d, edx
-    sub r8d, edx
+{% highlight nasm %}
+imul eax, eax, 0x12b9b0a5
+cdq 
+mov r8d, eax
+mov eax, 0x44b82f99
+xor r8d, edx
+sub r8d, edx
+{% endhighlight %}
 
 `imul` does the signed multiplication with the first magic number (the one which looked like pi). `cdq` *sign-extends* the result into the `edx` register, copying the sign bit of `eax` into every bit of `edx`. This means if `eax` is a negative number (sign bit is 1), all the bits in `edx` are also 1, and vice versa - so `edx` will either be `0x00000000` or `0xffffffff` (all ones or zeroes). `eax` is then copied in `r8d` (a 32-bit section of `r8`) with the `mov` instruction. Then, the `xor` and `sub` instructions use `edx` to change the result of multiplication. If `edx` is set to `0x00000000` these will have no effect. If `edx` is `0xffffffff` then this will first invert all the bits in `r8d` and then subtract `0xffffffff`, which is the same as inverting and adding one - or negating `r8d`. As `edx` is only set to `0xffffffff` when the result is negative, this means that the result will either be left positive, or negated to become positive. Hence, this first part is the absolute value of multiplying with `0x12b9b0a5`.
 

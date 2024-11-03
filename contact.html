@@ -6,7 +6,7 @@ navtype: contact
 ---
 
 <p>
-  Click <a href="#" onclick="resetAndStartExecution()">here</a> to get my email address.
+<a href="#" onclick="resetAndStartExecution()">Click here</a> to get my email address using this <a href="https://en.wikipedia.org/wiki/Brainfuck">convenient program</a>.
 </p>
 
 <pre><code id="program"></code></pre>
@@ -121,7 +121,7 @@ navtype: contact
   function resetAndStartExecution() {
     if (tickInterval !== null) {
       clearInterval(tickInterval);
-      speed += 1;
+      speed += 2.5;
     } else {
       speed = 1;
     }

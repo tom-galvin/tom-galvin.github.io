@@ -2,11 +2,12 @@ pre code span.k, pre code span.p, pre code span.si, pre code span.kt, pre code s
   font-weight: 400;
 }
 
-pre code span.c1, pre code span.c2 {
+pre code span.c1, pre code span.c2, pre code span.cm {
   font-style: italic;
+  color: #617d29;
 }
 
-pre code span.s1, pre code span.s2, pre code span.si {
+pre code span.s1, pre code span.s2, pre code span.si, pre code span.sc {
   color: #914830;
 }
 
@@ -20,10 +21,6 @@ pre code span.k, pre code span.kt, pre code span.kr {
 
 pre code span.mi, pre code span.mh {
   color: #7d7529;
-}
-
-pre code span.c1, pre code span.c2 {
-  color: #617d29;
 }
 
 pre code span.email-mem {
