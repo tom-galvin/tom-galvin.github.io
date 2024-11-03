@@ -72,7 +72,9 @@ Eventually I reached the point where I couldn't keep track of where I was. There
 
 <div style="text-align: center">
   <a href="http://xkcd.com/979/"><img alt="An XKCD comic about obscure programming problems," src="//imgs.xkcd.com/comics/wisdom_of_the_ancients.png" /></a><br/>
-  <span class="post-meta small">When knee-deep in the backwaters of a gigantic foreign codebase, this situation is irritatingly common.</span>
+  {% comment %}
+      <span class="post-meta small">When knee-deep in the backwaters of a gigantic foreign codebase, this situation is irritatingly common.</span>
+  {% endcomment %}
 </div>
 
 I found some luck in some discussions of the Windows DDK on a Chinese discussion forum for IO device drivers. It seems like the [`RtlGenerate8dot3Name`](https://msdn.microsoft.com/en-us/library/windows/hardware/ff552285%28v=vs.85%29.aspx) function in the NT kernel is the function I'm looking for. Common sense would suggest this function does exactly what it says on the tin, so I hoped that I'd be able to write another program to call it and debug it with OllyDbg, like before. One small problem, however: it's a kernel code function, so I can't call it from userland. I'd need to write a device driver to call it, which is both something I've never touched at all before, and something that's nigh impossible without access to the DDK or NDK. Back to the ReactOS codebase.

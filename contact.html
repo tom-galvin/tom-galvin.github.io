@@ -14,18 +14,19 @@ navtype: contact
 <p id="disclaimer"></p>
 
 <script>
-  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-]>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<]>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
+  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-s]r>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-s]r>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<s]r>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
   let memory, pc, pcSkipEnd, head, output;
   let displayWidth = 37;
 
   let tickInterval;
-  let speed = 0;
+  let speed = 0, speedIncrease = 0;
 
   function reset() {
     memory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     pc = 0;
     pcSkipEnd = 0;
     head = 0;
+    speedIncrease = 0;
     output = "";
   }
 
@@ -39,7 +40,7 @@ navtype: contact
   }
 
   function tick() {
-    let maxReps = speed * Math.random();
+    let maxReps = (speedIncrease + speed) * Math.random();
     for (var reps = 0; reps < maxReps; reps++) {
       if (pc > program.length) {
         clearInterval(tickInterval);
@@ -83,6 +84,12 @@ navtype: contact
           output += String.fromCharCode(memory[head]);
         } else if(i === ',') {
           // stop looking!
+        } else if(i === 'r') {
+          // resets tick speed
+          speedIncrease = 0;
+        } else if(i === 's') {
+          // temporary speed up
+          speedIncrease += 1;
         }
         pc = '[]'.includes(i) ? pc + 1 : pcSkipEnd;
         skip();
@@ -94,8 +101,13 @@ navtype: contact
   function updateDisplay() {
     let element = document.getElementById("program");
     var h = "";
-    for(var i = 0; i < program.length; i++) {
-      h += "<span" + (i >= pc && i < pcSkipEnd ? ' class="email-pc"' : "") + ">" + program[i] + "</span>" + ((i + 1) % displayWidth == 0 ? "\n" : "");
+    var i = 0;
+    for(var j = 0; j < program.length; j++) {
+      let theCharacter = program[j];
+      if(!'rs'.includes(theCharacter)) {
+        h += "<span" + (i >= pc && i < pcSkipEnd ? ' class="email-pc"' : "") + ">" + theCharacter + "</span>" + ((i + 1) % displayWidth == 0 ? "\n" : "");
+        i += 1;
+      }
     }
     h += "\n\nMEM:";
     for(var i = 0; i < memory.length; i++) {

@@ -1,0 +1,56 @@
+body {
+  background-color: #101414;
+  background-size: 60px 60px, 60px 60px;
+  background-image: radial-gradient(circle, #444444 1px, rgba(0, 0, 0, 0) 1px),
+    linear-gradient(to right, #444444 2px, transparent 1px);
+  background-position: calc(50% - 430px) 15px, calc(50% - 401px) 0;
+  background-repeat: repeat, repeat-y;
+  color: #c7cccb;
+}
+
+header {
+  color: rgb(255, 255, 255, 0.08);
+  background-size: 30px 30px;
+  background-image: radial-gradient(circle, #666666 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: calc(50% - 430px) 30px;
+  background-repeat: repeat;
+}
+
+
+.content a {
+  color: #75f4ff;
+}
+
+.logo h1 a, .post-header h2, .post-header h2 a {
+  color: white;
+}
+
+.nav-links a:hover {
+  color: inherit;
+}
+
+.nav-links {
+  background-attachment: scroll;
+  background-clip: text;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(45deg, rgb(117, 244, 255), rgb(0, 172, 233));
+  background-origin: padding-box;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-size: auto;
+}
+
+pre, p code, li code {
+  background-color: #222;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px #222;
+}
+
+pre code span.k, pre code span.kr, pre code span.kt {
+  color: #718fc1;
+}
+
+pre code span.mi, pre code span.mh {
+  color: #ca7fd1;
+}

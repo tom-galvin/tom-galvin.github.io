@@ -12,7 +12,9 @@
           {% assign navtype = layout.navtype %}
         {% endif %}
         <li{% if navtype == "home" %} class="current-page"{% endif %}><a href="/">home</a></li>
-        <li{% if navtype == "cv" %} class="current-page"{% endif %}><a href="/cv/">cv</a></li>
+        {% comment %}
+          <li{% if navtype == "cv" %} class="current-page"{% endif %}><a href="/cv/">cv</a></li>
+        {% endcomment %}
         <li{% if navtype == "about" %} class="current-page"{% endif %}><a href="/about/">about</a></li>
         <li{% if navtype == "socials" %} class="current-page"{% endif %}><a href="/socials/">socials</a></li>
         <li{% if navtype == "contact" %} class="current-page"{% endif %}><a href="/contact/">contact</a></li>
