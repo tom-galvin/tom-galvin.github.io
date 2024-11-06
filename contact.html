@@ -14,19 +14,20 @@ navtype: contact
 <p id="disclaimer"></p>
 
 <script>
-  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-s]r>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-s]r>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<s]r>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
+  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-s]<]r>>>+++[>>+<-<--s]r<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-s]r>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>s]r<<<<<<[->>>-<<<s]r>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<s]r>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
   let memory, pc, pcSkipEnd, head, output;
   let displayWidth = 37;
 
   let tickInterval;
-  let speed = 0, speedIncrease = 0;
+  let speed = 0;
+  let nestedLoopWithIterationCount = [];
 
   function reset() {
     memory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     pc = 0;
     pcSkipEnd = 0;
     head = 0;
-    speedIncrease = 0;
+    nestedLoopWithIterationCount = [];
     output = "";
   }
 
@@ -40,7 +41,8 @@ navtype: contact
   }
 
   function tick() {
-    let maxReps = (speedIncrease + speed) * Math.random();
+    // will speed up execution based on how many times we've been spinning round a [] loop
+    let maxReps = (nestedLoopWithIterationCount.reduce((a, x) => a + Math.sqrt(x), 0) + speed) * Math.random();
     for (var reps = 0; reps < maxReps; reps++) {
       if (pc > program.length) {
         clearInterval(tickInterval);
@@ -67,6 +69,8 @@ navtype: contact
                 depth -= 1;
               }
             } while(a !== ']' || depth > 0);
+          } else {
+            nestedLoopWithIterationCount.push(0);
           }
         } else if(i === ']') {
           if(memory[head] !== 0) {
@@ -78,19 +82,16 @@ navtype: contact
               } else if(a === '[') {
                 depth -= 1;
               }
+              nestedLoopWithIterationCount[nestedLoopWithIterationCount.length - 1] += 1;
             } while(a !== '[' || depth > 0);
+          } else {
+            nestedLoopWithIterationCount.pop();
           }
         } else if(i === '.') {
           output += String.fromCharCode(memory[head]);
         } else if(i === ',') {
           // stop looking!
-        } else if(i === 'r') {
-          // resets tick speed
-          speedIncrease = 0;
-        } else if(i === 's') {
-          // temporary speed up
-          speedIncrease += 1;
-        }
+        } 
         pc = '[]'.includes(i) ? pc + 1 : pcSkipEnd;
         skip();
       }
@@ -102,12 +103,9 @@ navtype: contact
     let element = document.getElementById("program");
     var h = "";
     var i = 0;
-    for(var j = 0; j < program.length; j++) {
-      let theCharacter = program[j];
-      if(!'rs'.includes(theCharacter)) {
-        h += "<span" + (i >= pc && i < pcSkipEnd ? ' class="email-pc"' : "") + ">" + theCharacter + "</span>" + ((i + 1) % displayWidth == 0 ? "\n" : "");
-        i += 1;
-      }
+    for(var i = 0; i < program.length; i++) {
+      let theCharacter = program[i];
+      h += "<span" + (i >= pc && i < pcSkipEnd ? ' class="email-pc"' : "") + ">" + theCharacter + "</span>" + ((i + 1) % displayWidth == 0 ? "\n" : "");
     }
     h += "\n\nMEM:";
     for(var i = 0; i < memory.length; i++) {
@@ -123,12 +121,12 @@ navtype: contact
       clearInterval(tickInterval);
       speed += 2.5;
     } else {
-      speed = 1;
+      speed = 5;
     }
     reset();
     updateDisplay();
     tickInterval = setInterval(tick, 10);
-    document.getElementById("disclaimer").innerHTML = "If you're getting bored, it will run faster every time you hit the link.";
+    // document.getElementById("disclaimer").innerHTML = "If you're getting bored, it will run faster every time you hit the link.";
   }
 
   reset();
