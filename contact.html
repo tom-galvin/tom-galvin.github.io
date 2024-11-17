@@ -6,12 +6,10 @@ navtype: contact
 ---
 
 <p>
-<a href="#" onclick="resetAndStartExecution()">Click here</a> to get my email address using this <a href="https://en.wikipedia.org/wiki/Brainfuck">convenient program</a>.
+Please contact me via email. To do so, <a href="#" onclick="resetAndStartExecution()">click here</a> to start the <a href="https://en.wikipedia.org/wiki/Brainfuck">virtual machine</a>.
 </p>
 
 <pre><code id="program"></code></pre>
-
-<p id="disclaimer"></p>
 
 <script>
   let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-]>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<]>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
@@ -43,14 +41,14 @@ navtype: contact
     do {
       pcSkipEnd += 1;
     }
-    while('-+<>'.includes(i) && pcSkipEnd < program.length && program[pcSkipEnd] === instructionAtPC);
+    while('-+<>'.includes(instructionAtPC) && pcSkipEnd < program.length && program[pcSkipEnd] === instructionAtPC);
   }
 
   function tick() {
     // this will speed up execution based on how many times we've been spinning round a [] loop
     let maxReps = (nestedLoopWithIterationCount.reduce((a, x) => a + Math.sqrt(x), 0) + speed) * Math.random();
     for (var reps = 0; reps < maxReps; reps++) {
-      if (pc > program.length) {
+      if (pc >= program.length) {
         clearInterval(tickInterval);
         tickInterval = null;
         break;
@@ -118,7 +116,9 @@ navtype: contact
       h += " <span" + (i === head ? ' class="email-mem"' : "") + ">" + memory[i].toString(16).padStart(2, '0') + "</span>";
     }
 
-    element.innerHTML = h + `\nOUT: ${output}`;
+    element.innerHTML = h + (pc < program.length
+      ? `\nOUT: ${output}`
+      : `\nOUT: <a href="mailto:${output}">${output}</a>`);
   }
 
   function resetAndStartExecution() {
