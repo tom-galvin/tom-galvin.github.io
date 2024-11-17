@@ -14,7 +14,7 @@ navtype: contact
 <p id="disclaimer"></p>
 
 <script>
-  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-s]<]r>>>+++[>>+<-<--s]r<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-s]r>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>s]r<<<<<<[->>>-<<<s]r>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<s]r>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
+  let program = "+++++[->+++++[>+++++[>+>+>>+<<<<-]>>>>>+<<<<<<-]<]>>>+++[>>+<-<--]<<<++[->++[->++[->++<]<]<]>>>[->->>-<<<]>>>.--------.<.<<<<<++[->++[->++[->++<]<]<]>>>[>>>+<<<-]>>>-.<<<++++++[-<+<+<+>>>]>>>[-<<<+>>>]<<<<<<[->>>-<<<]>>>+.--.<<[->>-<<]>>.<[->-<]>.[->>>+<<<]>>>>---[>+>+>+<<<--]>[-<<+>>]<<.>>>[-<++<+>>]<<[-<+>]<-.>>[--<+>>+<]<[-<->]<--.>>>>+[<<+<+>>>--]<<<[-<+>]<-.<<+.>>+>>[-<<+>>]<<.+>>>[-<<<->>>]<<<.";
   let memory, pc, pcSkipEnd, head, output;
   let displayWidth = 37;
 
@@ -32,16 +32,22 @@ navtype: contact
   }
 
   function skip() {
-    let i = program[pc];
+    // rather than just having a program counter, the range of chars [pc, pcSkipEnd) points at
+    // a range of repeated chars such as ++++ which are all executed in one tick, so that runs
+    // of repeats are executed faster (and will highlight them as a group rather than one at a
+    // time) -- this is just to speed up the visualisation
+    // this function will set pcSkipEnd := pc, and then continue to advance pcSkipEnd while it
+    // still points to the same instruction as pc does
+    let instructionAtPC = program[pc];
     pcSkipEnd = pc;
     do {
       pcSkipEnd += 1;
     }
-    while('-+<>'.includes(i) && pcSkipEnd < program.length && program[pcSkipEnd] === i);
+    while('-+<>'.includes(i) && pcSkipEnd < program.length && program[pcSkipEnd] === instructionAtPC);
   }
 
   function tick() {
-    // will speed up execution based on how many times we've been spinning round a [] loop
+    // this will speed up execution based on how many times we've been spinning round a [] loop
     let maxReps = (nestedLoopWithIterationCount.reduce((a, x) => a + Math.sqrt(x), 0) + speed) * Math.random();
     for (var reps = 0; reps < maxReps; reps++) {
       if (pc > program.length) {
@@ -112,8 +118,7 @@ navtype: contact
       h += " <span" + (i === head ? ' class="email-mem"' : "") + ">" + memory[i].toString(16).padStart(2, '0') + "</span>";
     }
 
-    element.innerHTML = h
-      + `\nOUT: ${output}`;
+    element.innerHTML = h + `\nOUT: ${output}`;
   }
 
   function resetAndStartExecution() {
@@ -126,7 +131,6 @@ navtype: contact
     reset();
     updateDisplay();
     tickInterval = setInterval(tick, 10);
-    // document.getElementById("disclaimer").innerHTML = "If you're getting bored, it will run faster every time you hit the link.";
   }
 
   reset();
