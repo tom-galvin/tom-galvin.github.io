@@ -7,21 +7,21 @@ categories: blog dev
 ---
 Today's [hard DailyProgrammer challenge](//www.reddit.com/r/dailyprogrammer/comments/322hh0/) is quite a stinker of a challenge. It's the inverse of [Wednesday's intermediate challenge](//www.reddit.com/r/dailyprogrammer/comments/31thwb/), and is essentially two problems in one. Specifically, this is a [constraint satisfaction problem](http://en.wikipedia.org/wiki/Constraint_satisfaction_problem) (thanks to [/u/code\_and\_theory on Reddit](http://www.reddit.com/r/dailyprogrammer/comments/322hh0/20150410_challenge_209_hard_unpacking_a_sentence/cq7ye9z?context=1)), and they can typically be solved by backtracking search algorithms, which is what I've used in my solution. You'll be given a board of characters, like this:
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="A board of characters, much like an unsolved word-search board." src="{{ site.base_url }}/images/unpacking/1.png" /><br/>
   <!-- <span class="post-meta small"></span> -->
 </div>
 
 Next, you'll be given a *starting position* on the board. In this particular case, it's the top left - position `(1, 1)`.
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="There's a green circle around the top-left letter, indicating the starting position." src="{{ site.base_url }}/images/unpacking/2.png" /><br/>
   <!-- <span class="post-meta small"></span> -->
 </div>
 
 Now, your task is to find a complete (ie. Hamiltonian) path through this grid which, when read out from start to finish, forms a valid sentence. Pretty hefty task. In this case, the sentence follows this path:
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="A red arrow traces the path of the sentence." src="{{ site.base_url }}/images/unpacking/3.png" /><br/>
   <span class="post-meta small">It reads: <em>IT KEEPS YOUR NECK OFF THE LINE</em>.</span>
 </div>
@@ -75,7 +75,7 @@ The pseudo-code to determine if something is a valid sentence in this way looks 
 
 Now we know how to tell a valid sentence apart from gibberish, we need to find these valid sentences inside the grid. The way I solved this was to just do a depth first search on every possible path, stopping only when a definitely-invalid sequence of characters is reached. This animation might do it some justice:
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="An animation showing the depth-first search process on the board of characters." src="{{ site.base_url }}/images/unpacking/4.gif" /><br/>
   <span class="post-meta small">There's a lot more steps that I skipped over here, and the number of steps grows exponentially with the board size in the worst-case scenario.</span>
 </div>

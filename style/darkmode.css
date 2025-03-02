@@ -1,15 +1,16 @@
 body {
-  background-color: #101414;
+  background-color: #282828;
   background-size: 60px 60px, 60px 60px;
-  background-image: radial-gradient(circle, #444444 1px, rgba(0, 0, 0, 0) 1px),
-    linear-gradient(to right, #444444 2px, transparent 1px);
-  background-position: calc(50% - 430px) 15px, calc(50% - 401px) 0;
-  background-repeat: repeat, repeat-y;
+  background-image: linear-gradient(to right, #404040 2px, transparent 1px), 
+    radial-gradient(circle, #444444 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: calc(50% - 401px) 0, calc(50% - 430px) 15px;
+  background-repeat: repeat-y, repeat;
   color: #c7cccb;
 }
 
 header {
   color: rgb(255, 255, 255, 0.08);
+  background-color: #404040;
   background-size: 30px 30px;
   background-image: radial-gradient(circle, #666666 1px, rgba(0, 0, 0, 0) 1px);
   background-position: calc(50% - 430px) 30px;
@@ -18,7 +19,12 @@ header {
 
 
 .content a {
-  color: #75f4ff;
+  color: inherit;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: #c389ff;
 }
 
 .logo h1 a, .post-header h2, .post-header h2 a {
@@ -26,19 +32,7 @@ header {
 }
 
 .nav-links a:hover {
-  color: inherit;
-}
-
-.nav-links {
-  background-attachment: scroll;
-  background-clip: text;
-  background-color: rgba(0, 0, 0, 0);
-  background-image: linear-gradient(45deg, rgb(117, 244, 255), rgb(0, 172, 233));
-  background-origin: padding-box;
-  background-position-x: 0%;
-  background-position-y: 0%;
-  background-repeat: repeat;
-  background-size: auto;
+  color: #c389ff;
 }
 
 p code, li code {
@@ -55,6 +49,15 @@ pre {
   border-radius: 2px;
   background-size: 10px 10px;
   background-image: radial-gradient(circle, #333333 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: 5px 5px;
+}
+
+.light-bg-image img {
+  border-radius: 1em;
+  background-color: #f0f0f0;
+  border: 1px solid #fff;
+  background-size: 10px 10px;
+  background-image: radial-gradient(circle, #ccc 1px, rgba(0, 0, 0, 0) 1px);
   background-position: 5px 5px;
 }
 

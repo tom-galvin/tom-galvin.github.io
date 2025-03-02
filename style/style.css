@@ -10,12 +10,13 @@
 
 body {
   /* font-family: "Iosevka Aile Web", sans-serif; */
-  font-family: "Open Sans", serif;
+  /* font-family: "Open Sans", serif; */
+  font-family: "Inter", serif;
   font-optical-sizing: auto;
   /* font-weight: <weight>; */
   font-style: normal;
   font-variation-settings: "wdth" 100;
-  font-weight: 200;
+  font-weight: 300;
   /* letter-spacing: -1pt; */
   line-height: 1.6;
   padding-top: 60px; /* To offset the fixed header */
@@ -23,7 +24,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #3271a8;
+  color: #c7cccb;
 }
 
 header {
@@ -52,10 +53,12 @@ header nav {
 }
 
 .logo h1 {
-  font-family: "Iosevka Aile Web", sans-serif;
+  /* font-family: "Iosevka Aile Web", sans-serif; */
+  font-style: normal;
+  font-family: "Inter", sans-serif;
   font-size: 32pt;
-  font-weight: bold;
-  letter-spacing: -2pt;
+  font-weight: 500;
+  /* letter-spacing: -2pt; */
 }
 
 .logo h1 a {
@@ -81,9 +84,14 @@ nav {
 }
 
 .nav-links a {
-  color: white;
-  text-decoration: none;
+  /* text-decoration: none; */
   font-size: 24px;
+}
+
+a {
+  /* color: white; */
+  /* text-decoration: none; */
+  /* font-size: 24px; */
   transition: color 0.3s ease;
 }
 
@@ -284,6 +292,11 @@ pre, p code, li code {
     font-size: 28pt;
   }
 
+  main {
+    position: relative;
+    top: -2em;
+  }
+
   body {
     padding-top: 0px !important;
   }
@@ -298,4 +311,5 @@ pre, p code, li code {
 
   pre {
     overflow-x: scroll;
+  }
 }

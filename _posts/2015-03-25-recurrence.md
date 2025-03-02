@@ -23,7 +23,7 @@ data Successor = Literal Double
 
 As you can see, binary and unary arithmetic operations are supported, as well as literals. The `Previous` node type is for referring to a previous term in the series, such as `(Previous -1)` and `(Previous -2)` for the last two values in the Fibonacci sequence.
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="A diagram showing the (n-1)th and (n-2)th terms in the Fibonacci sequence." src="{{ site.base_url }}/images/recurrence/sln1.png" /><br/>
   <span class="post-meta small">From this, you can see that the Fibonacci recurrence relation is <strong>dependent</strong> on the (-1)th and (-2)th term, relative to the current term.</span>
 </div>
@@ -36,7 +36,7 @@ fibSuccessor = Binary (+) (Previous -1) (Previous -2)
 
 My solution traverses the successor tree to find the list of terms that the defined term is dependent on (`[-1, -2]` in this case), by looking at the `Previous` nodes. Then, by taking this list, you can step along the *unknown* terms in the series, find out whether both dependent terms *are* known, and then calculate those terms and add them to the known terms in the series. By doing this iteratively, you can start from a small number of known terms in the series (such as `[0, 1]` in the Fibonacci sequence) and build up from there.
 
-<div style="text-align: center">
+<div style="text-align: center" class="light-bg-image">
   <img alt="An animation showing the successive deduction of terms in the Fibonacci sequence." src="{{ site.base_url }}/images/recurrence/sln2.gif" /><br/>
   <span class="post-meta small">This might seem overkill for something such as the Fibonacci sequence, but this process supports the calculation of much more complex series, such as those with missing terms in the middle.</span>
 </div>
