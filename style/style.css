@@ -29,19 +29,28 @@ a {
 
 header {
   position: fixed;
-  top: 0;
+  top: -1em;
   width: 100%;
   background-color: #333;
   color: white;
   z-index: 1000;
   padding: 10px 0;
+  border-bottom: 1px solid #555;
 }
+
+header .logo {
+  position: relative;
+  bottom: -1.5em;
+}
+
 
 header nav {
   font-family: "Iosevka Web", sans-serif;
   letter-spacing: 0;
   font-style: italic;
   font-weight: 300;
+  position: relative;
+  bottom: -1.9em;
 }
 
 .container {
@@ -57,7 +66,7 @@ header nav {
   font-style: normal;
   font-family: "Inter", sans-serif;
   font-size: 32pt;
-  font-weight: 500;
+  font-weight: 600;
   /* letter-spacing: -2pt; */
 }
 
@@ -86,6 +95,7 @@ nav {
 .nav-links a {
   /* text-decoration: none; */
   font-size: 24px;
+  color: white;
 }
 
 a {
@@ -107,16 +117,26 @@ a {
   color: #ff6347;
 }
 
-main {
+/* main {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+} */
+
+main {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.content .post-header, article {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .content {
-  max-width: 1200px;
-  margin-top: 40px;
-  padding-bottom: 50px;
+  /* margin-top: 40px; */
+  /* padding-bottom: 50px; */
 }
 
 .content h2 {
@@ -125,14 +145,26 @@ main {
 }
 
 .content .post-header {
-  max-width: none !important;
-  margin-left: 2em;
+  /* max-width: none !important; */
+  padding-left: 2em;
   font-family: "Iosevka Web";
   font-weight: 300;
   letter-spacing: 0;
   font-size: 17pt;
   margin-top: 3em;
   margin-bottom: 2em;
+}
+
+.content > .posts {
+  padding-top: 3em;
+}
+
+.content > .posts > .post-header:last-child {
+  margin-bottom: 0;
+}
+
+.content > .posts > .post-header:first-child {
+  margin-top: 0;
 }
 
 .content .post-header .post-age {
@@ -147,8 +179,12 @@ main {
   text-indent: -1.45em;
 }
 
+.post-content {
+  padding: 2em;
+}
+
 .pagination {
-  text-align: center;
+  display: flex;
 }
 
 .pagination-item {
@@ -156,12 +192,12 @@ main {
   font-size: 18pt;
 }
 
-.pagination .left {
-  float: left;
+.pagination .middle {
+  flex: 1 0 auto;
 }
 
-.pagination .right {
-  float: right;
+.pagination .left, .pagination .right {
+  flex: 0 0 auto;
 }
 
 .content .post-header h2::before {
@@ -263,10 +299,6 @@ pre, p code, li code {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .logo h1 {
-    font-size: 20px;
-  }
-
   .nav-links li {
     display: block;
     margin: 10px 0;
@@ -282,19 +314,21 @@ pre, p code, li code {
     background-color: #333;
     color: white;
     padding: 15px;
+    top: -1em;
+    padding-bottom: 2em;
   }
 
   header .logo {
     margin-top: auto;
+    bottom: -2em;
   }
 
   header .logo h1 {
-    font-size: 28pt;
+    font-size: 38pt;
   }
 
   main {
     position: relative;
-    top: -2em;
   }
 
   body {

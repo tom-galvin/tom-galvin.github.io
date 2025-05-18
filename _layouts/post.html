@@ -9,28 +9,32 @@ navtype: blog
 {% endif %}
 
 
-<div class="post-header">
-  <div class="post-date">
-    {{ page.date | date: "%Y-%m-%d" }}
-    {% comment %}
-      {% if page.update_date %}
-        <span class="post-age">(9 years old)</span>
-      {% else %}
-        <span class="post-age">(9 years old{{ page.update_date | date: "%Y-%m-%d" }})</span>
-      {% endif %}
-    {% endcomment %}
-  </div>
-  <h2>
-    {{ page.title }}
-  </h2>
-  <div class="post-length">
-    {{ minutes }} minute read
+<div class="post-header-container">
+  <div class="post-header">
+    <div class="post-date">
+      {{ page.date | date: "%Y-%m-%d" }}
+      {% comment %}
+        {% if page.update_date %}
+          <span class="post-age">(9 years old)</span>
+        {% else %}
+          <span class="post-age">(9 years old{{ page.update_date | date: "%Y-%m-%d" }})</span>
+        {% endif %}
+      {% endcomment %}
+    </div>
+    <h2>
+      {{ page.title }}
+    </h2>
+    <div class="post-length">
+      {{ minutes }} minute read
+    </div>
   </div>
 </div>
 
-<article class="post-content">
-  {{ content }}
-</article>
+<div class="post-content-container">
+  <article class="post-content">
+    {{ content }}
+  </article>
+</div>
 
 {% if site.disqus_shortname %}
   <div id="disqus_thread"></div>

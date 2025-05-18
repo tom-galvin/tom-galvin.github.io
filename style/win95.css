@@ -1,0 +1,150 @@
+body {
+  background-color: white;
+  /* background-image: linear-gradient(to right, #404040 2px, transparent 1px), 
+    radial-gradient(circle, #444444 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: calc(50% - 401px) 0, calc(50% - 430px) 15px;
+  background-repeat: repeat-y, repeat; */
+  color: black;
+}
+
+header {
+  color: white;
+  background-color: black;
+  /* background-size: 30px 30px;
+  background-image: radial-gradient(circle, #666666 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: calc(50% - 430px) 30px;
+  background-repeat: repeat; */
+  background-image: url("/images/globe.png");
+  background-repeat: no-repeat;
+  background-position: 25px 20%;
+  background-size: 128px 128px;
+  padding-left: 158px;
+}
+
+@media (max-width: 920px) {
+  header {
+    padding-left: 18px;
+  }
+}
+@media (max-width: 500px) {
+  header .logo h1 {
+    font-size: 28pt;
+  }
+}
+
+.post-header-container, .content > .posts, .content > .pagination {
+  width: 100%;
+  background-color: #349aa5;
+  color: white;
+}
+
+.content > .post-header-container {
+  padding-top: 200px;
+  padding-bottom: 10px;
+  font-size: 30pt;
+}
+
+.content > .post-header-container > .post-header {
+  font-size: 30pt;
+}
+
+.content .post-header {
+  text-shadow: 1px 1px 0 black;
+}
+
+.content > .post-header-container > .post-header h2 {
+  font-size: 40pt;
+}
+
+.content .post-header h2 {
+  text-shadow: 2px 2px 0 black;
+}
+
+
+
+.content a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: #99f;
+}
+
+.logo h1 a, .post-header h2, .post-header h2 a {
+  color: white;
+}
+
+.nav-links a:hover {
+  color: #99f;
+}
+
+article {
+  background-color: white;
+  color: black;
+  width: 100%;
+  position: relative;
+}
+
+.post-content-container {
+  width: 100%;
+  background-color: white;
+}
+
+p code, li code {
+  /* background-color: #222; */
+  background-color: #eee;
+  border-radius: 2px;
+  /* box-shadow: 0 0 0 2px #222; */
+  border: 1px solid #ddd;
+}
+
+pre {
+  border: 1px solid #ddd;
+  background-color: #eee;
+  border-radius: 2px;
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, #ddd 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: 10px 10px;
+}
+
+.light-bg-image img {
+  border-radius: 1em;
+  border: 1px solid #ddd;
+  background-color: #eee;
+  border-radius: 2px;
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, #ddd 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: 10px 10px;
+}
+
+pre code span.k, pre code span.kr, pre code span.kt {
+  color: #718fc1;
+}
+
+pre code span.mi, pre code span.mh {
+  color: #ca7fd1;
+}
+
+pre code span.s1, pre code span.s2, pre code span.si, pre code span.sc {
+  color: #e4985c;
+}
+
+pre code span.cp, pre code span.cpf {
+  color: #498f7c;
+}
+
+pre code.language-nasm span.kt {
+  color: #498f7c;
+  font-weight: 200;
+}
+
+pre code.language-nasm span.nf {
+  color: #718fc1;
+  font-weight: 400;
+}
+
+pre code.language-nasm span.nl {
+  color: #e4985c;
+  font-style: italic;
+}

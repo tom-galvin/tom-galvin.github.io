@@ -11,10 +11,10 @@ body {
 header {
   color: rgb(255, 255, 255, 0.08);
   background-color: #404040;
-  background-size: 30px 30px;
+  /* background-size: 30px 30px;
   background-image: radial-gradient(circle, #666666 1px, rgba(0, 0, 0, 0) 1px);
   background-position: calc(50% - 430px) 30px;
-  background-repeat: repeat;
+  background-repeat: repeat; */
 }
 
 
