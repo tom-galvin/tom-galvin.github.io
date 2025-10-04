@@ -1,0 +1,30 @@
+pre code span.k, pre code span.kr, pre code span.kt {
+  color: #718fc1;
+}
+
+pre code span.mi, pre code span.mh {
+  color: #ca7fd1;
+}
+
+pre code span.s1, pre code span.s2, pre code span.si, pre code span.sc {
+  color: #e4985c;
+}
+
+pre code span.cp, pre code span.cpf {
+  color: #498f7c;
+}
+
+pre code.language-nasm span.kt {
+  color: #498f7c;
+  font-weight: 300;
+}
+
+pre code.language-nasm span.nf {
+  color: #718fc1;
+  font-weight: 400;
+}
+
+pre code.language-nasm span.nl {
+  color: #e4985c;
+  font-style: italic;
+}

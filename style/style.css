@@ -1,10 +1,13 @@
 @import url('highlight.css');
+@import url('highlight-darkmode.css');
 body {
     background-color: #172428;
     color: #5fa49f;
     /* color: #427874; */
     font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    font-size: 12pt;
+    font-weight: 300;
+    line-height: 1.8;
     background-color: #1f3638;
     box-sizing: border-box;
 }
@@ -12,10 +15,13 @@ body {
 .header-container {
     background-color: #171e1c;
     background-clip: padding-box;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     border-bottom: 2px solid #1f3638;
     box-shadow: 0 2px 0 #171e1c;
+}
+
+.header-container:first-of-type {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .footer-container {
@@ -94,8 +100,19 @@ a:hover {
     text-decoration: underline;
 }
 
-.links-container a, .post-box a {
+.post-box a, .content-container a {
     color: #efd878;
+}
+
+.post-meta.small {
+  font-size: 0.8rem;
+  line-height: 0.8;
+  font-weight: 400;
+  color: #5fa49f;
+}
+
+.post-meta.small a {
+  color: #b6dbd8;
 }
 
 .content-box {
@@ -112,6 +129,12 @@ a:hover {
 .content-container, .post-header {
   max-width: 1000px;
   margin: 0 auto;
+  color: #b6dbd8;
+}
+
+.content-container p, .content-container ul {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .article-header-container {
@@ -125,9 +148,17 @@ a:hover {
 .post-header h2 {
   margin: 0;
   padding: 0;
-  font-size: 2.5rem;
+  font-size: 36pt;
   color: #efd878;
   font-family: 'Iosevka Web', sans-serif;
+}
+
+.post-header .post-date {
+  margin-top: 6rem;
+}
+
+.post-header .post-length {
+  margin-top: 3rem;
 }
 
 .post-box {
@@ -151,6 +182,10 @@ a:hover {
     font-family: 'Iosevka Web', sans-serif;
 }
 
+.post-date, .post-length {
+    color: #5fa49f;
+}
+
 .post-box p {
     margin: 0.5rem 0;
     /* color: #b0c4c4; */
@@ -168,14 +203,15 @@ a:hover {
 
 code, pre code {
   font-family: 'Iosevka Web', monospace;
+  font-weight: 300;
 }
 
 p code, li code {
   /* background-color: #222; */
-  background-color: #101014;
-  border-radius: 0.5rem;
-  /* box-shadow: 0 0 0 2px #222; */
-  border: 1px solid #1d1d1d;
+  background-color: #131f20;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px #243d3e;
+  border: 2px solid #131f20;
 }
 
 pre {
@@ -183,10 +219,19 @@ pre {
   margin: 1em;
   font-size: 11pt;
   line-height: 1.2;
-  border: 1px solid #1d1d1d;
-  background-color: #101014;
+  border: 1px solid #243d3e;
+  background-color: #131f20;
   border-radius: 0.5rem;
-  background-size: 10px 10px;
-  background-image: radial-gradient(circle, #333333 1px, rgba(0, 0, 0, 0) 1px);
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, #243d3e 1px, rgba(0, 0, 0, 0) 1px);
+  background-position: 5px 5px;
+}
+
+.light-bg-image img {
+  border: 1px solid #243d3e;
+  background-color: #a3aaab;
+  border-radius: 2rem;
+  background-size: 20px 20px;
+  background-image: radial-gradient(circle, #799394 1px, rgba(0, 0, 0, 0) 1px);
   background-position: 5px 5px;
 }

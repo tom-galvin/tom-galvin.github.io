@@ -4,7 +4,9 @@ title: A Tale of Two File Names
 date: 2015-06-09 19:10:10
 summary: Reverse-engineering an undocumented checksum function buried deep in old NT kernel code, because I have too much free time.
 categories: blog gen
+headerimage: tale.jpg
 ---
+
 Users of DOS or older versions of Windows will have invariably stumbled upon a quirk of Windows' handling of file names at some point. File names which are longer than 8 characters, have an extension other than 3 character long, or aren't upper-case and alphanumeric, are (in some situations) truncated to an ugly shorter version which contains a tilde (`~`) in it somewhere. For example, `5+6 June Report.doc` will be turned into `5_6JUN~1.DOC`. This is relic of the limitations brought about by older versions of FAT used in DOS and older versions of pre-NT Windows.
 
 In case you aren't aware of how 8.3 file names work, here's a quick run-down.

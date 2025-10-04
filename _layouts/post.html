@@ -8,6 +8,20 @@ navtype: blog
 {% assign minutes = 1 %}
 {% endif %}
 
+{% if page.headerimage %}
+<style>
+  .article-header-container {
+    background-image: url('{{ site.baseurl }}/images/articleheader/{{ page.headerimage }}');
+    background-color: #66959b;
+    background-blend-mode: multiply;
+  }
+
+  .post-header h2, .post-header .post-date, .post-header .post-length {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+  }
+</style>
+{% endif %}
 
 <div class="header-container article-header-container">
   <div class="post-header">

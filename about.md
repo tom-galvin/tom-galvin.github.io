@@ -10,3 +10,9 @@ Hey, I'm Tom. I'm based in Birmingham (UK), and I work as a software engineer at
 When I'm not writing code I'm probably making stuff in FL studio.
 
 When I'm not in front of a computer I'm hopefully on a mountain strapped to a snowboard somewhere.
+
+You can find me on:
+
+* [GitHub](https://github.com/tom-galvin)
+* [LinkedIn](https://www.linkedin.com/in/tomgalvin97)
+* [Soundcloud](https://soundcloud.com/breakpoint-uk/)

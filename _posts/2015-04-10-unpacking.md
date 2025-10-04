@@ -4,6 +4,7 @@ title: Unpacking Sentences
 date: 2015-04-10 21:41:30
 summary: A solution to a particularly tricky DailyProgrammer question.
 categories: blog dev
+headerimage: unpacking.png
 ---
 Today's [hard DailyProgrammer challenge](//www.reddit.com/r/dailyprogrammer/comments/322hh0/) is quite a stinker of a challenge. It's the inverse of [Wednesday's intermediate challenge](//www.reddit.com/r/dailyprogrammer/comments/31thwb/), and is essentially two problems in one. Specifically, this is a [constraint satisfaction problem](http://en.wikipedia.org/wiki/Constraint_satisfaction_problem) (thanks to [/u/code\_and\_theory on Reddit](http://www.reddit.com/r/dailyprogrammer/comments/322hh0/20150410_challenge_209_hard_unpacking_a_sentence/cq7ye9z?context=1)), and they can typically be solved by backtracking search algorithms, which is what I've used in my solution. You'll be given a board of characters, like this:
 
