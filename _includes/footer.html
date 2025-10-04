@@ -1,0 +1,27 @@
+<div class="footer-container">
+  {% if paginator %}
+  <div class="footer-navigation-left">
+    {% if paginator.previous_page %}
+      {% if paginator.page == 2 %}
+        <a class="pagination-item" href="{{ site.baseurl }}/">&lt;&lt;</a>
+      {% else %}
+        <a class="pagination-item" href="{{ site.baseurl }}/page{{paginator.previous_page}}/">&lt;&lt;</a>
+      {% endif %}
+    {% else %}
+    
+    {% endif %}
+  </div>
+  {% endif %}
+  <div class="footer-content">
+    &copy; 2025 tomgalvin.uk
+  </div>
+  {% if paginator %}
+  <div class="footer-navigation-right">
+    {% if paginator.next_page %}
+      <a class="pagination-item" href="{{ site.baseurl }}/page{{paginator.next_page}}/">&gt;&gt;</a>
+    {% else %}
+    
+    {% endif %}
+  </div>
+  {% endif %}
+</div>  

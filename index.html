@@ -3,29 +3,18 @@ layout: default
 navtype: home
 ---
 
-<div class="posts">
-  {% for post in paginator.posts %}
-    {% comment %}
-    <div class="post">
-      <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">
-        <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</p>
-        <h3 class="h2 post-title">{{ post.title }}</h3>
-        <p class="post-summary">{{ post.summary }}</p>
-      </a>
-    </div>
-    {% endcomment %}
-    <div class="post-header">
-      <div class="post-date">
-        {{ post.date | date: "%Y-%m-%d" }}
+<div class="content-container">
+  <div class="post-container">
+    {% for post in paginator.posts %}
+      <div class="post-box">
+        <span class="post-date">
+          {{ post.date | date: "%Y-%m-%d" }}
+        </span>
+        <h2>
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.summary }}</p>
       </div>
-      <h2>
-        <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
-      </h2>
-      <div class="post-length">
-        {{ post.summary }}
-      </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 </div>
-
-{% include pagination.html %}

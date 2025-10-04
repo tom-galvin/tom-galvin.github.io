@@ -1,24 +1,20 @@
-<header>
-  <div class="container">
-    <div class="logo">
-      <h1><a href="{{ site.url }}" class="site-title">{{ site.title }}</a></h1>
-      <!-- <h1>TOM GALVIN</h1> -->
-    </div>
-    <nav>
-      <ul class="nav-links">
-        {% if page.navtype %}
-          {% assign navtype = page.navtype %}
-        {% else %}
-          {% assign navtype = layout.navtype %}
-        {% endif %}
-        <li{% if navtype == "home" %} class="current-page"{% endif %}><a href="/">home</a></li>
-        {% comment %}
-          <li{% if navtype == "cv" %} class="current-page"{% endif %}><a href="/cv/">cv</a></li>
-        {% endcomment %}
-        <li{% if navtype == "about" %} class="current-page"{% endif %}><a href="/about/">about</a></li>
-        <li{% if navtype == "socials" %} class="current-page"{% endif %}><a href="/socials/">socials</a></li>
-        <li{% if navtype == "contact" %} class="current-page"{% endif %}><a href="/contact/">contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<div class="header-container primary-header-container" style="background-image: url('{{ site.baseurl }}/images/globe.png');">
+  <header>
+    <h1>tomgalvin.uk</h1>
+  </header>
+</div>
+<div class="header-container links-container">
+  <nav>
+    <ul>
+      {% if page.navtype %}
+        {% assign navtype = page.navtype %}
+      {% else %}
+        {% assign navtype = layout.navtype %}
+      {% endif %}
+      <li{% if navtype == "home" %} class="current-page"{% endif %}><a href="/">Home</a></li>
+      <li{% if navtype == "about" %} class="current-page"{% endif %}><a href="/about/">About</a></li>
+      <li{% if navtype == "socials" %} class="current-page"{% endif %}><a href="/socials/">Socials</a></li>
+      <li{% if navtype == "contact" %} class="current-page"{% endif %}><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
+</div>

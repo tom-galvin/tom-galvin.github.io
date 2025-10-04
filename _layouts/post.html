@@ -9,7 +9,7 @@ navtype: blog
 {% endif %}
 
 
-<div class="post-header-container">
+<div class="header-container article-header-container">
   <div class="post-header">
     <div class="post-date">
       {{ page.date | date: "%Y-%m-%d" }}
@@ -30,22 +30,22 @@ navtype: blog
   </div>
 </div>
 
-<div class="post-content-container">
-  <article class="post-content">
-    {{ content }}
+<div class="content-container">
+  <article class="post-container">
+      {{ content }}
   </article>
+
+  {% if site.disqus_shortname %}
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname = '{{ site.disqus_shortname }}';
+
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js?https';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  {% endif %}
 </div>
-
-{% if site.disqus_shortname %}
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_shortname = '{{ site.disqus_shortname }}';
-
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js?https';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-{% endif %}
