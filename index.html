@@ -6,15 +6,15 @@ navtype: home
 <div class="content-container">
   <div class="post-container">
     {% for post in paginator.posts %}
-      <div class="post-box">
+      <a href="{{ post.url | prepend: site.baseurl }}"  class="post-box">
         <span class="post-date">
           {{ post.date | date: "%Y-%m-%d" }}
         </span>
         <h2>
-          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link">{{ post.title }}</a>
+          {{ post.title }}
         </h2>
         <p>{{ post.summary }}</p>
-      </div>
+      </a>
     {% endfor %}
   </div>
 </div>

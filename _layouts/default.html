@@ -2,12 +2,17 @@
 <html lang="en">
 {% include head.html %}
 
-<body>
+<body class="preload">
   <div class="content-box">
     {% include header.html %}
     {{ content }}
     {% include footer.html %}
   </div>
+  <script>
+    window.addEventListener('load', function() {
+      document.body.classList.remove('preload');
+    });
+  </script>
 </body>
 </html>
 
