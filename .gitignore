@@ -3,6 +3,10 @@
 .sass-cache/*
 _site/
 _site/*
+vendor/
+vendor/*
+.bundle/
+.bundle/*
 Thumbs.db
 *Thumbs.db
 */Thumbs.db
