@@ -1,0 +1,12 @@
+---
+# Front matter makes Jekyll run this file through Liquid, then Sass.
+# The colour scheme is picked by `colorscheme:` in _config.yml and must
+# match a file in _sass/colorschemes/.
+---
+@import "colorschemes/{{ site.colorscheme | default: 'old-dark' }}";
+@import "variables";
+@import "base";
+@import "layout";
+@import "posts";
+@import "code";
+@import "syntax";

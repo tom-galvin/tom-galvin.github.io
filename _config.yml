@@ -37,6 +37,13 @@ plugins:
 
 
 paginate: 4
+
+# Colour scheme: the name of a file in _sass/colorschemes/ (without the
+# leading underscore or .scss), e.g. old-dark or new-light.
+colorscheme: new-light
+
+sass:
+  style: compressed
 permalink:    pretty
 # Exclude from processing.
 # The following items will not be processed, by default.

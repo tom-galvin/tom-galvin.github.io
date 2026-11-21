@@ -1,0 +1,40 @@
+code,
+pre code {
+  font-family: $font-code;
+  font-weight: 300;
+}
+
+// Inline code
+p code,
+li code {
+  background-color: $code-bg;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px $code-border;
+  border: 2px solid $code-bg;
+}
+
+// Code blocks
+pre {
+  padding: 1em;
+  margin: 1em;
+  font-size: 11pt;
+  line-height: 1.2;
+  border: 1px solid $code-border;
+  background-color: $code-bg;
+  border-radius: 0.5rem;
+  @include dot-grid($code-dot);
+
+  @include mobile {
+    font-size: 9pt;
+    overflow-x: scroll;
+    background-attachment: local;
+  }
+}
+
+// Images drawn for a light page (e.g. black line art) get a light backing.
+.light-bg-image img {
+  border: 1px solid $code-border;
+  background-color: $figure-bg;
+  border-radius: 2rem;
+  @include dot-grid($figure-dot);
+}

@@ -1,0 +1,50 @@
+// The original dark teal scheme.
+//
+// A colour scheme defines every variable below and nothing else. To add one,
+// copy this file, change the values, and set `colorscheme:` in _config.yml.
+
+// Surfaces
+$page-bg:           #1f3638; // behind the main box
+$chrome-bg:         #171e1c; // header, nav bar, footer
+$surface-bg:        #152527; // main content area
+$surface-hover-bg:  #1a2b2c; // post card / pagination button under the pointer
+$tab-active-bg:     #131917; // current page's nav tab
+$code-bg:           #131f20;
+
+// Lines
+$border:            #1f3638; // main line of every bordered box
+$ring:              #171e1c; // thin outline either side of $border
+$border-hover:      #2e4a4b;
+$ring-hover:        #243d3e;
+$code-border:       #243d3e;
+$code-dot:          #243d3e; // dot grid behind code blocks
+
+// Text
+$text:              #b6dbd8; // article text
+$text-muted:        #5fa49f; // dates, metadata, footer
+$title:             white;   // site title
+$heading:           #efd878;
+$accent:            #efd878; // content links, hovered nav links
+$link:              #57b6b0; // nav links
+
+// Figures with a forced light background (.light-bg-image)
+$figure-bg:         #a3aaab;
+$figure-dot:        #799394;
+
+// Post header when it has a background image
+$header-image-tint:   #66959b; // multiplied over the image
+$header-image-text:   white;
+$header-image-shadow: #000000;
+
+// Syntax highlighting
+$syn-comment:       #617d29;
+$syn-keyword:       #718fc1;
+$syn-number:        #ca7fd1;
+$syn-string:        #e4985c;
+$syn-preproc:       #498f7c;
+
+// Highlighted cells in the contact page interpreter (.email-mem, .email-pc)
+$mark-mem-fg:       #000;
+$mark-mem-bg:       #0f0;
+$mark-pc-fg:        #fff;
+$mark-pc-bg:        #f00;

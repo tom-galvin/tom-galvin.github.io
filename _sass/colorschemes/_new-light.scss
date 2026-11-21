@@ -1,0 +1,50 @@
+// Cream paper with dark green headings.
+//
+// Defines the same variables as _old-dark.scss; see that file for what each
+// one colours.
+
+// Surfaces: one flat paper colour throughout
+$page-bg:           #f6f2ec;
+$chrome-bg:         #f6f2ec;
+$surface-bg:        #f6f2ec;
+$surface-hover-bg:  #efeae0;
+$tab-active-bg:     #f6f2ec;
+$code-bg:           #efeae0;
+
+// Lines: $ring matches the paper, so boxes get a single sage line
+$border:            #8fa598;
+$ring:              #f6f2ec;
+$border-hover:      #0e5036;
+$ring-hover:        #cdd6cb;
+$code-border:       #c3cdc2;
+$code-dot:          #dad8cb;
+
+// Text
+$text:              #101111;
+$text-muted:        #164a34;
+$title:             #141b19;
+$heading:           #0e5036;
+$accent:            #1a7a52;
+$link:              #0e4c34;
+
+// Figures with a forced light background (.light-bg-image)
+$figure-bg:         #ffffff;
+$figure-dot:        #d9d9d0;
+
+// Post header when it has a background image
+$header-image-tint:   #5f8f7a;
+$header-image-text:   white;
+$header-image-shadow: #000000;
+
+// Syntax highlighting
+$syn-comment:       #617d29;
+$syn-keyword:       #29497d;
+$syn-number:        #7d7529;
+$syn-string:        #914830;
+$syn-preproc:       #60297d;
+
+// Highlighted cells in the contact page interpreter (.email-mem, .email-pc)
+$mark-mem-fg:       #000;
+$mark-mem-bg:       #0f0;
+$mark-pc-fg:        #fff;
+$mark-pc-bg:        #f00;

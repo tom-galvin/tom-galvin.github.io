@@ -1,0 +1,59 @@
+// Rouge syntax highlighting. Class names are Pygments token types.
+pre code {
+  // keywords, punctuation, interpolation, preprocessor includes
+  span.k, span.kr, span.kt, span.p, span.si, span.cpf {
+    font-weight: 400;
+  }
+
+  span.c1, span.c2, span.cm {
+    font-style: italic;
+    color: $syn-comment;
+  }
+
+  span.k, span.kr, span.kt {
+    color: $syn-keyword;
+  }
+
+  span.mi, span.mh {
+    color: $syn-number;
+  }
+
+  span.s1, span.s2, span.si, span.sc {
+    color: $syn-string;
+  }
+
+  span.cp, span.cpf {
+    color: $syn-preproc;
+  }
+
+  // Assembly: registers, instructions, labels
+  &.language-nasm {
+    span.kt {
+      color: $syn-preproc;
+      font-weight: 300;
+    }
+
+    span.nf {
+      color: $syn-keyword;
+      font-weight: 400;
+    }
+
+    span.nl {
+      color: $syn-string;
+      font-style: italic;
+    }
+  }
+
+  // Memory cells highlighted by the interpreter on the contact page
+  span.email-mem {
+    color: $mark-mem-fg;
+    font-weight: 400;
+    background-color: $mark-mem-bg;
+  }
+
+  span.email-pc {
+    color: $mark-pc-fg;
+    font-weight: 400;
+    background-color: $mark-pc-bg;
+  }
+}
