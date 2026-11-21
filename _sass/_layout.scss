@@ -50,7 +50,12 @@
   background-position: 24px center;
   background-repeat: no-repeat;
   background-size: 64px 64px;
-  padding-left: 6em;
+  // Room for the globe. In rem so it doesn't grow with the body text size.
+  padding-left: 6rem;
+
+  @include mobile {
+    padding-left: 5rem;
+  }
 
   @if not $header-rule {
     border-bottom: none;

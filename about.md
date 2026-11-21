@@ -5,7 +5,7 @@ permalink: /about/
 navtype: about
 ---
 
-Hey, I'm Tom. I'm based in Birmingham (UK), and I work as a software engineer at [Engine by Starling](https://enginebystarling.com).
+Hey, I'm Tom. I grew up in Manchester 🇬🇧 and now live in Sydney 🇦🇺. I work as a software engineer at [Engine by Starling](https://enginebystarling.com).
 
 When I'm not writing code I'm probably making stuff in FL studio.
 

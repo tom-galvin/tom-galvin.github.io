@@ -32,6 +32,19 @@ pre {
   }
 }
 
+// The interpreter display on the contact page
+pre.interpreter {
+  font-size: 20pt;
+
+  // On narrow screens, shrink so the widest line (37 characters, the MEM row)
+  // still fits. Each character is 0.5em wide, and the block's own margin and
+  // padding take another 4em, so the full width is 22.5em plus 34px of fixed
+  // page padding and border. Capped at 17pt.
+  @include mobile {
+    font-size: unquote("min(17pt, calc((100vw - 34px) / 22.6))");
+  }
+}
+
 // Images drawn for a light page (e.g. black line art) get a light backing.
 .light-bg-image img {
   border: 1px solid $code-border;
