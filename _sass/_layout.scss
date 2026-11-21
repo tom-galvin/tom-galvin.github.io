@@ -51,6 +51,11 @@
   background-repeat: no-repeat;
   background-size: 64px 64px;
   padding-left: 6em;
+
+  @if not $header-rule {
+    border-bottom: none;
+    box-shadow: none;
+  }
 }
 
 // Nav tabs

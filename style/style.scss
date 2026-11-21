@@ -1,8 +1,10 @@
 ---
 # Front matter makes Jekyll run this file through Liquid, then Sass.
 # The colour scheme is picked by `colorscheme:` in _config.yml and must
-# match a file in _sass/colorschemes/.
+# match a file in _sass/colorschemes/. `header_rule:` is read from there too.
 ---
+$header-rule: {% if site.header_rule == false %}false{% else %}true{% endif %};
+
 @import "colorschemes/{{ site.colorscheme | default: 'old-dark' }}";
 @import "variables";
 @import "base";

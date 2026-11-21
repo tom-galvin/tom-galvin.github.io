@@ -23,11 +23,12 @@ pre {
   background-color: $code-bg;
   border-radius: 0.5rem;
   @include dot-grid($code-dot);
+  // Long lines scroll inside the block instead of widening the page.
+  overflow-x: auto;
+  background-attachment: local;
 
   @include mobile {
     font-size: 9pt;
-    overflow-x: scroll;
-    background-attachment: local;
   }
 }
 

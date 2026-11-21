@@ -42,6 +42,9 @@ paginate: 4
 # leading underscore or .scss), e.g. old-dark or new-light.
 colorscheme: new-light
 
+# Draw a line between the site title bar and the nav tabs: true or false.
+header_rule: false
+
 sass:
   style: compressed
 permalink:    pretty

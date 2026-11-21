@@ -1,16 +1,16 @@
 body {
   color: $text-muted;
   font-family: $font-body;
-  font-size: 12pt;
+  font-size: $font-size-body;
   font-weight: 300;
-  line-height: 1.8;
+  line-height: $line-height-body;
   background-color: $page-bg;
   box-sizing: border-box;
 
   @include mobile {
     background-color: $surface-bg;
     margin: 0;
-    font-size: 10pt;
+    font-size: $font-size-body-mobile;
   }
 }
 
@@ -23,10 +23,10 @@ a {
   }
 }
 
+// Jekyll wraps {% highlight %} blocks in <figure>, which browsers indent by
+// 40px a side. Drop that so they line up with Markdown code blocks.
 figure {
-  @include mobile {
-    margin: 0;
-  }
+  margin: 0;
 }
 
 // <body> carries .preload until the page has loaded, so nothing animates in.

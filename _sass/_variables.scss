@@ -7,6 +7,18 @@ $font-code:    'Iosevka Web', monospace;
 $radius: 10px;
 $mobile-breakpoint: 600px;
 
+// Body text
+$font-size-body:        18px;
+$font-size-body-mobile: 17px;
+$line-height-body:      1.65;
+// Width of the article column, sized so prose runs to roughly 65-72
+// characters per line at $font-size-body.
+$measure: 620px;
+
+// Line between the site title bar and the nav tabs. Set from `header_rule:`
+// in _config.yml (see style/style.scss).
+$header-rule: true !default;
+
 @mixin mobile {
   @media (max-width: $mobile-breakpoint) {
     @content;

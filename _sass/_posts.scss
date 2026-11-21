@@ -1,7 +1,7 @@
 // Article body (posts and pages) and the home page's post list.
 .content-container,
 .post-header {
-  max-width: 850px;
+  max-width: $measure;
   margin: 0 auto;
   color: $text;
 }
@@ -9,6 +9,8 @@
 .content-container {
   a {
     color: $accent;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
   p,
@@ -79,6 +81,7 @@
 
 a.post-box {
   color: inherit;
+  text-decoration: none;
   transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
 
   &:hover {
